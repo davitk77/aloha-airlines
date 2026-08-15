@@ -102,7 +102,7 @@ body {
 .hero {
     height: 100vh;
     background: linear-gradient(rgba(59, 19, 76, 0.65), rgba(59, 19, 76, 0.35)), 
-                url('./main.png') no-repeat center center/cover;
+                url('./main.webp') no-repeat center center/cover;
     display: flex;
     align-items: center;
     padding: 0 50px;
@@ -221,9 +221,9 @@ body {
   background-position: center;
 }
 
-.b738 { background-image: url('./738.png'); }
-.b737 { background-image: url('./737.png'); }
-.b736 { background-image: url('./788.png'); }
+.b738 { background-image: url('./738.webp'); }
+.b737 { background-image: url('./737.webp'); }
+.b736 { background-image: url('./788.webp'); }
 
 .fleet-info {
     padding: 25px;
