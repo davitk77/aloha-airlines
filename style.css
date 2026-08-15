@@ -1,0 +1,645 @@
+/* Global Reset & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #3B134C; /* Base text elements inherit the primary purple profile */
+    background-color: #F9F4EE; /* Main warm background color requested */
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: rgba(249, 244, 238, 0.95); /* Tinted to match background code */
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(59, 19, 76, 0.05);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #3B134C;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: #EC3F47; /* Primary vibrant accent color */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #3B134C;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #EC3F47; /* Core Action Color */
+    color: #F9F4EE !important;
+    padding: 12px 26px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, background-color 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #3B134C; /* Soft cross over color swapping */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #3B134C !important;
+    border: 2px solid #3B134C;
+    padding: 10px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: #3B134C;
+    color: #F9F4EE !important;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(59, 19, 76, 0.65), rgba(59, 19, 76, 0.35)), 
+                url('./main.webp') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+    color: #F9F4EE;
+}
+
+.hero-content {
+    max-width: 600px;
+    margin-top: 60px;
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #F9F4EE;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.hero .btn-secondary {
+    color: #F9F4EE !important;
+    border-color: #F9F4EE;
+}
+
+.hero .btn-secondary:hover {
+    background-color: #F9F4EE;
+    color: #3B134C !important;
+}
+
+/* Live Stats Dashboard */
+.stats-section {
+    padding: 80px 0;
+    background: #3B134C; /* Highlight Deep Base */
+    color: #F9F4EE;
+    text-align: center;
+}
+
+.stats-section h2 {
+    margin-bottom: 40px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.stat-card h3 {
+    font-size: 48px;
+    color: #F79031; /* Vibrant Accent Highlights */
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+/* Fleet Section */
+.fleet-section {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.fleet-section h2 {
+    font-size: 36px;
+    color: #3B134C;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: #3B134C;
+    opacity: 0.7;
+    margin-bottom: 50px;
+}
+
+.fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.fleet-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(59, 19, 76, 0.04);
+    transition: transform 0.3s;
+    text-align: left;
+}
+
+.fleet-card:hover {
+    transform: translateY(-5px);
+}
+
+.fleet-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Simulated Fleet Images */
+.b738, .b737, .b736 {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.b738 { background-image: url('./738.webp'); }
+.b737 { background-image: url('./737.webp'); }
+.b736 { background-image: url('./788.webp'); }
+
+.fleet-info {
+    padding: 25px;
+}
+
+.fleet-info h3 {
+    margin-bottom: 10px;
+    color: #3B134C;
+    font-weight: 600;
+}
+
+.fleet-info p {
+    color: #3B134C;
+    opacity: 0.8;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.badge {
+    background: #F9F4EE;
+    color: #F79031; /* Bright warm text highlight tag */
+    border: 1px solid rgba(247, 144, 49, 0.3);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Join Section */
+.join-section {
+    padding: 100px 0;
+    background: rgba(59, 19, 76, 0.03); /* Subtle variation of theme purple background */
+    text-align: center;
+}
+
+.msg-box {
+    max-width: 600px !important;
+}
+
+.join-section h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #3B134C;
+    font-weight: 700;
+}
+
+.join-section p {
+    color: #3B134C;
+    opacity: 0.8;
+    margin-bottom: 30px;
+}
+
+.join-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.join-form input {
+    padding: 15px 20px;
+    border: 2px solid rgba(59, 19, 76, 0.1);
+    background-color: #F9F4EE;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    color: #3B134C;
+    transition: border-color 0.3s;
+}
+
+.join-form input:focus {
+    border-color: #EC3F47;
+}
+
+/* Footer */
+footer {
+    background: #3B134C;
+    color: #F9F4EE;
+    opacity: 0.9;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* Responsive Handling */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero h1 { font-size: 38px; }
+    .stats-grid { flex-direction: column; }
+}
+/* Logo container styling */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* Controls the image height so it fits well inside the navbar */
+.logo-img {
+  height: 55px;       /* Adjust this height to fit your navbar design */
+  width: auto;        /* Keeps aspect ratio intact */
+  object-fit: contain;
+}
+.btn-join {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #3B134C; /* Button color */
+    color: #ffffff;            /* Text color */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-join:hover {
+    background-color: #682285; /* Darker shade on hover */
+}
+/* Simulation Disclaimer Modal / Banner */
+.sim-banner-wrapper {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(150%);
+    width: 90%;
+    max-width: 780px;
+    background: #391952;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 5px solid #f77f00; /* Aloha Accent Orange */
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sim-banner-wrapper.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+.sim-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    gap: 20px;
+}
+
+.sim-banner-badge {
+    display: inline-block;
+    background: rgba(247, 127, 0, 0.2);
+    color: #ffb703;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+.sim-banner-text h4 {
+    margin: 0 0 6px 0;
+    font-size: 1.1rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.sim-banner-text p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: #d1c4e9;
+}
+
+.sim-banner-text strong {
+    color: #ffffff;
+}
+
+.btn-acknowledge {
+    background: #ff5964;
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.btn-acknowledge:hover {
+    background: #e63946;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 89, 100, 0.4);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 650px) {
+    .sim-banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .sim-banner-actions {
+        width: 100%;
+    }
+
+    .btn-acknowledge {
+        width: 100%;
+    }
+}
+/* Route Map Styling */
+        .route-map-section {
+            padding: 80px 20px;
+            background-color: #2b123d;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .route-map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .route-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .route-header h2 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .route-header p {
+            color: #f77f00;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .map-card {
+            background: #391952;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .svg-container {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        .svg-container svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .transpac-route {
+            stroke: #ff5964;
+            stroke-width: 2.5;
+            stroke-dasharray: 6, 6;
+            animation: dash 30s linear infinite;
+        }
+
+        .interisland-route {
+            stroke: #ffb703;
+            stroke-width: 1.8;
+            opacity: 0.7;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        .node-pin {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .node-pin:hover circle.marker {
+            fill: #ffffff;
+            r: 7;
+        }
+
+        .map-legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+
+        .legend-line {
+            width: 28px;
+            height: 3px;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* --- POPUP DISCLAIMER MODAL CSS --- */
+        .sim-banner-wrapper {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(150%);
+            width: 90%;
+            max-width: 780px;
+            background: #391952;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 6px solid #f77f00;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            z-index: 99999;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .sim-banner-wrapper.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sim-banner-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            gap: 20px;
+        }
+
+        .sim-banner-badge {
+            display: inline-block;
+            background: rgba(247, 127, 0, 0.25);
+            color: #ffb703;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+        }
+
+        .sim-banner-text h4 {
+            margin: 0 0 6px 0;
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .sim-banner-text p {
+            margin: 0;
+            font-size: 0.88rem;
+            line-height: 1.45;
+            color: #d1c4e9;
+        }
+
+        .sim-banner-text strong {
+            color: #ffffff;
+        }
+
+        .btn-acknowledge {
+            background: #ff5964;
+            color: #ffffff;
+            border: none;
+            padding: 10px 22px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: inherit;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .btn-acknowledge:hover {
+            background: #e63946;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 89, 100, 0.4);
+        }
+
+        @media (max-width: 650px) {
+            .sim-banner-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .sim-banner-actions, .btn-acknowledge {
+                width: 100%;
+            }
+        }
