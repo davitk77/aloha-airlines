@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Aloha Airlines Virtual</title>
+  <meta name="description" content="Create your Aloha Airlines Virtual pilot account and get AloCARS.">
+  <meta name="theme-color" content="#2b123d">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/x-icon" href="../Favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- New pilot sign-up for flyalohava.com/join/. It talks to the AloCARS server (acars.flyalohava.com),
+       which creates the account, gives the Pilot ID and emails it with the AloCARS download link.
+       Staff open or close sign-ups in the AloCARS console: Settings, Airline, New pilot sign-ups. -->
+  <style>
+    :root { --bg: #F9F4EE; --ink: #3B134C; --red: #EC3F47; --card: #fff; --line: rgba(59, 19, 76, .14); --muted: rgba(59, 19, 76, .65); --ok: #1f8a4c; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; min-height: 100vh; }
+    .top { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; }
+    .top img { height: 44px; width: auto; }
+    .top a.back { color: var(--ink); text-decoration: none; font-weight: 500; opacity: .8; }
+    .top a.back:hover { opacity: 1; }
+    main { max-width: 520px; margin: 10px auto 60px; padding: 0 16px; }
+    h1 { font-size: 30px; line-height: 1.2; margin-bottom: 6px; }
+    h1 span { color: var(--red); }
+    .lead { color: var(--muted); margin-bottom: 22px; }
+    .card { background: var(--card); border-radius: 18px; padding: 26px; box-shadow: 0 18px 40px -24px rgba(59, 19, 76, .45); border: 1px solid var(--line); }
+    label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 14px; }
+    input, select { display: block; width: 100%; margin-top: 6px; padding: 11px 13px; font: inherit; font-weight: 400; color: var(--ink);
+      background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+    input:focus, select:focus { outline: 2px solid var(--red); outline-offset: 1px; border-color: transparent; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 480px) { .row { grid-template-columns: 1fr; } h1 { font-size: 26px; } .card { padding: 20px; } }
+    .hint { font-weight: 400; font-size: 12px; color: var(--muted); }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    button, .btn { display: inline-block; width: 100%; padding: 13px 18px; border: 0; border-radius: 999px; background: var(--red); color: #fff;
+      font: inherit; font-weight: 600; cursor: pointer; text-align: center; text-decoration: none; transition: transform .15s, box-shadow .15s; }
+    button:hover, .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 22px -12px var(--red); }
+    button:disabled { opacity: .6; cursor: wait; transform: none; box-shadow: none; }
+    .err { color: var(--red); font-size: 14px; min-height: 22px; margin: 4px 0 10px; }
+    .note { text-align: center; color: var(--muted); }
+    .pid { font-size: 34px; font-weight: 700; letter-spacing: .04em; text-align: center; margin: 8px 0; color: var(--ink); }
+    .done h2 { text-align: center; margin-bottom: 4px; }
+    .steps { margin: 18px 0; padding-left: 20px; }
+    .steps li { margin-bottom: 6px; }
+    .small { font-size: 12px; color: var(--muted); margin-top: 14px; text-align: center; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a href="../"><img src="../Logo.png" alt="Aloha Airlines Virtual"></a>
+    <a class="back" href="../">← Back to the site</a>
+  </header>
+  <main>
+    <h1>Join the <span>crew</span></h1>
+    <p class="lead">Create your pilot account. You'll get your Pilot ID straight away, and an email with the AloCARS download link.</p>
+
+    <div class="card">
+      <p class="note" id="loading">Loading…</p>
+      <p class="note" id="closed" hidden>New pilot sign-ups are closed right now. Please check back later, or ask us on Discord.</p>
+
+      <form id="join" hidden autocomplete="on">
+        <label>Full name <span class="hint">as on your VATSIM account</span><input name="name" autocomplete="name" required maxlength="80"></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required maxlength="120"></label>
+        <div class="row">
+          <label>Password<input name="password" type="password" autocomplete="new-password" required minlength="8"></label>
+          <label>Confirm password<input name="confirm" type="password" autocomplete="new-password" required minlength="8"></label>
+        </div>
+        <label>Home base<select name="home" id="home" required></select></label>
+        <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+        <div class="err" id="err" role="alert"></div>
+        <button id="go">Create my account</button>
+        <p class="small">At least 8 characters for the password. You can sign in to AloCARS with your Pilot ID or your email.</p>
+      </form>
+
+      <div class="done" id="done" hidden>
+        <h2>Welcome aboard!</h2>
+        <p class="note">Your Pilot ID is</p>
+        <div class="pid" id="pid"></div>
+        <p class="note" id="mailnote"></p>
+        <ol class="steps">
+          <li>Download and install AloCARS.</li>
+          <li>Sign in with your Pilot ID (or email) and the password you just chose.</li>
+          <li>Book your first flight and fly the Spirit of Aloha.</li>
+        </ol>
+        <a class="btn" id="dl" href="https://acars.flyalohava.com/download">Download AloCARS</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    'use strict';
+    const API = 'https://acars.flyalohava.com';
+    const $ = s => document.querySelector(s);
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    async function call(method, path, body) {
+      const res = await fetch(API + path, { method, headers: { 'Content-Type': 'application/json' }, body: body && JSON.stringify(body) });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+      return data;
+    }
+    (async () => {
+      const info = await call('GET', '/api/signup');
+      $('#loading').hidden = true;
+      if (info.downloadUrl) $('#dl').href = info.downloadUrl;
+      if (!info.open) { $('#closed').hidden = false; return; }
+      const bases = [...info.bases].sort((a, b) => a.icao.localeCompare(b.icao));
+      $('#home').innerHTML = bases.map(b => `<option value="${esc(b.icao)}">${esc(b.icao)} · ${esc(b.name)}</option>`).join('');
+      $('#join').hidden = false;
+    })().catch(() => { $('#loading').hidden = true; $('#closed').textContent = "We couldn't reach the sign-up service. Please try again in a few minutes."; $('#closed').hidden = false; });
+
+    $('#join').addEventListener('submit', async e => {
+      e.preventDefault();
+      const f = Object.fromEntries(new FormData(e.target));
+      $('#err').textContent = '';
+      if (f.password !== f.confirm) { $('#err').textContent = "The passwords don't match."; return; }
+      $('#go').disabled = true; $('#go').textContent = 'Creating your account…';
+      try {
+        const r = await call('POST', '/api/auth/register', { name: f.name, email: f.email, password: f.password, home: f.home, website: f.website });
+        $('#pid').textContent = r.id;
+        $('#mailnote').textContent = r.emailed ? `We've also emailed it to ${f.email}, with the download link.` : 'Write it down. You can also sign in with your email address.';
+        $('#join').hidden = true; $('#done').hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (err) {
+        $('#err').textContent = err.message;
+        $('#go').disabled = false; $('#go').textContent = 'Create my account';
+      }
+    });
+  </script>
+</body>
+</html>
