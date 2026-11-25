@@ -1,121 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join Aloha Airlines Virtual</title>
-  <meta name="description" content="Fly with Aloha Airlines Virtual: join our Discord, apply in two minutes, and get your Pilot ID and AloCARS login.">
-  <meta name="theme-color" content="#2b123d">
-  <link rel="icon" type="image/x-icon" href="../Favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Joining landing page for flyalohava.com/join/. New pilots apply on the airline's Discord: the AloCARS Sync bot
-       takes the application, opens a private chat with staff, and on approval creates the AloCARS account and emails
-       the login. The Discord invite and whether applications are open come from the AloCARS server
-       (acars.flyalohava.com/api/signup); staff set both in the AloCARS console (Applications > Setup, Settings > Airline). -->
-  <style>
-    :root { --bg: #F9F4EE; --ink: #3B134C; --red: #EC3F47; --card: #fff; --line: rgba(59, 19, 76, .14); --muted: rgba(59, 19, 76, .68); --discord: #5865F2; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; min-height: 100vh; }
-    .top { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; }
-    .top img { height: 44px; width: auto; }
-    .top a.back { color: var(--ink); text-decoration: none; font-weight: 500; opacity: .8; }
-    .top a.back:hover { opacity: 1; }
-    main { max-width: 760px; margin: 10px auto 60px; padding: 0 16px; }
-    .hero { text-align: center; margin: 18px 0 28px; }
-    h1 { font-size: 40px; line-height: 1.15; margin-bottom: 10px; }
-    h1 span { color: var(--red); }
-    .lead { color: var(--muted); max-width: 560px; margin: 0 auto 22px; font-size: 17px; }
-    .cta { display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; border-radius: 999px; background: var(--discord); color: #fff; font-weight: 600; font-size: 17px;
-      text-decoration: none; transition: transform .15s, box-shadow .15s; }
-    .cta:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -12px var(--discord); }
-    .cta svg { width: 24px; height: 24px; fill: currentColor; }
-    .cta[aria-disabled="true"] { background: #9a93a6; pointer-events: none; }
-    .status { margin-top: 12px; font-size: 14px; color: var(--muted); min-height: 22px; }
-    .status.closed { color: var(--red); font-weight: 500; }
-    h2 { font-size: 22px; margin: 34px 0 14px; text-align: center; }
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: step; }
-    .step { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 16px; box-shadow: 0 14px 34px -26px rgba(59, 19, 76, .5); }
-    .step::before { counter-increment: step; content: counter(step); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
-      background: var(--red); color: #fff; font-weight: 700; margin-bottom: 10px; }
-    .step b { display: block; margin-bottom: 4px; }
-    .step p { font-size: 14px; color: var(--muted); }
-    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; box-shadow: 0 14px 34px -26px rgba(59, 19, 76, .5); }
-    .card ul { padding-left: 20px; }
-    .card li { margin: 6px 0; }
-    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .small { font-size: 13px; color: var(--muted); }
-    .faq details { border-bottom: 1px solid var(--line); padding: 12px 0; }
-    .faq details:last-child { border-bottom: 0; }
-    .faq summary { cursor: pointer; font-weight: 600; }
-    .faq p { margin-top: 8px; color: var(--muted); font-size: 15px; }
-    @media (max-width: 720px) { .steps { grid-template-columns: 1fr 1fr; } .two { grid-template-columns: 1fr; } h1 { font-size: 32px; } }
-    @media (max-width: 420px) { .steps { grid-template-columns: 1fr; } }
-  </style>
+<meta charset="utf-8">
+<title>Join Aloha Airlines Virtual</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://flyalohava.com/#join">
+<meta http-equiv="refresh" content="0; url=../#join">
+<script>location.replace('../#join');</script>
 </head>
-<body>
-  <header class="top">
-    <a href="../"><img src="../Logo.png" alt="Aloha Airlines Virtual"></a>
-    <a class="back" href="../">← Back to the site</a>
-  </header>
-  <main>
-    <section class="hero">
-      <h1>Join the <span>crew</span></h1>
-      <p class="lead">Fly the Spirit of Aloha with us. Everything happens on our Discord: you apply in about two minutes, chat with our staff, and you're flying as soon as you're approved.</p>
-      <a class="cta" id="join" href="#" aria-disabled="true">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.4 18.4 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3l1.3-2.1a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2.1a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.7ZM8 15.4c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.6 8 10.6s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>
-        <span id="join-text">Join our Discord</span>
-      </a>
-      <div class="status" id="status">Loading…</div>
-    </section>
-
-    <h2>How it works</h2>
-    <div class="steps">
-      <div class="step"><b>Join our Discord</b><p>Use the button above. It's free.</p></div>
-      <div class="step"><b>Press Apply</b><p>In the <b>#onboarding</b> channel, press Apply and answer a few questions.</p></div>
-      <div class="step"><b>Chat with staff</b><p>You get a private channel with our staff. They may ask you a thing or two there.</p></div>
-      <div class="step"><b>Start flying</b><p>Once approved, we email your Pilot ID and login. Download AloCARS and book your first flight.</p></div>
-    </div>
-
-    <h2>Before you apply</h2>
-    <div class="two">
-      <div class="card"><b>You'll need</b>
-        <ul>
-          <li>A <b>VATSIM</b> account (your CID is checked)</li>
-          <li><b>MSFS 2020 or 2024</b>, or <b>X-Plane 11 or 12</b></li>
-          <li>A <b>Windows PC</b> for AloCARS, our flight tracker</li>
-          <li>A <b>Discord</b> account and an email address</li>
-        </ul></div>
-      <div class="card"><b>We'll ask</b>
-        <ul>
-          <li>Your name and email</li>
-          <li>Your VATSIM CID</li>
-          <li>Your home base and simulator</li>
-          <li>A little about your flight sim experience</li>
-        </ul></div>
-    </div>
-
-    <h2>Questions</h2>
-    <div class="card faq">
-      <details><summary>How long does approval take?</summary><p>Usually a day or two. Staff reply in your private channel, and you'll get a Discord notification when they do.</p></details>
-      <details><summary>Where's my login?</summary><p>When you're approved, we email your Pilot ID and password, and the bot posts your Pilot ID in your channel. Check your spam folder if the email doesn't show up.</p></details>
-      <details><summary>Can I check on my application?</summary><p>Yes. In <b>#onboarding</b>, press <b>Check my application</b> any time.</p></details>
-      <details><summary>Already a pilot?</summary><p><a href="https://acars.flyalohava.com/download">Download AloCARS</a> and sign in with your Pilot ID or email.</p></details>
-    </div>
-  </main>
-
-  <script>
-    'use strict';
-    const API = 'https://acars.flyalohava.com';
-    const join = document.getElementById('join'), status = document.getElementById('status');
-    const show = (msg, closed) => { status.textContent = msg; status.classList.toggle('closed', !!closed); };
-    fetch(API + '/api/signup').then(r => r.json()).then(info => {
-      if (info.discordUrl) { join.href = info.discordUrl; join.setAttribute('aria-disabled', 'false'); join.target = '_blank'; join.rel = 'noopener'; }
-      if (!info.open) show('Applications are closed right now. You can still join our Discord and say aloha.', true);
-      else if (!info.discordUrl) show("Our Discord link isn't ready yet. Please check back soon.", true);
-      else show('Applications are open. See you on Discord!');
-    }).catch(() => show("We couldn't reach our servers. Please try again in a few minutes.", true));
-  </script>
+<body style="font-family:system-ui,sans-serif;background:#f9f4ee;color:#3b134c;padding:40px">
+<p>The joining page has moved. <a href="../#join">Continue to Join the crew</a>.</p>
 </body>
 </html>

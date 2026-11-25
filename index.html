@@ -1,238 +1,1388 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aloha Airlines Virtual | VATSIM Airline</title>
-    <meta name="title" content="Aloha Airlines Virtual | VATSIM Airline">
-    <meta name="description" content="Connect Hawaii to the world on VATSIM. Interisland network and nonstop mainland service to Maui (OGG).">
-    <meta name="theme-color" content="#2b123d">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://flyalohava.com/">
-    <meta property="og:title" content="Aloha Airlines Virtual | VATSIM Airline">
-    <meta property="og:description" content="The Spirit of Aloha, Virtually. Fly interisland Hawaiian routes and Transpacific hops on VATSIM.">
-    <meta property="og:image" content="assets/images/og-preview.png">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="main.js" defer></script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>Aloha Airlines Virtual</title>
+<meta name="darkreader-lock">
+<meta name="theme-color" content="#3b134c">
+<link rel="icon" type="image/x-icon" href="Favicon.ico">
+<meta name="description" content="Aloha Airlines Virtual: a virtual airline flying Hawaiʻi from our hub on Maui.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:ital,wght@0,400..700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: the airline's own site, told through its working documents: a photo hero, a departures board, timetable and fleet sheets. One committed light look (sand ground, deep plum bands). */
+:root {
+  --night: #22102e;        /* deepest plum: board, maps, footer */
+  --plum: #3b134c;         /* brand ink */
+  --plum-soft: #5b2d74;
+  --lilac: #cdb8e0;        /* muted text on dark */
+  --hibiscus: #ec3f47;     /* brand red, graphics */
+  --hibiscus-deep: #d42c36;/* buttons and small red text */
+  --sunset: #f79031;       /* brand orange */
+  --plumeria: #ffc24b;     /* board lettering */
+  --sand: #f9f4ee;         /* page ground */
+  --sand-2: #f2e9df;       /* alternate band */
+  --paper: #ffffff;
+  --muted: #6b5878;
+  --line: rgba(59, 19, 76, .14);
+  --line-dark: rgba(255, 255, 255, .12);
+
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --wrap: 1180px;
+  --gutter: max(20px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(20px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--sand); color: var(--plum); font-family: var(--body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-family: var(--display); line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -.015em; }
+p { margin: 0; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 3px solid var(--sunset); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-left: var(--gutter); padding-right: var(--gutter-r); }
+.eyebrow { font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--hibiscus-deep); }
+.lede { font-size: 20px; line-height: 1.55; color: var(--muted); max-width: 62ch; }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 24px; border-radius: 999px; font-family: var(--body); font-weight: 700; font-size: 16px; text-decoration: none; border: 2px solid transparent; cursor: pointer; transition: transform .15s ease, background-color .15s ease, color .15s ease, border-color .15s ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--hibiscus-deep); color: var(--paper); }
+.btn-primary:hover { background: var(--plum); }
+.btn-ghost { border-color: currentColor; color: var(--sand); background: transparent; }
+.btn-ghost:hover { background: var(--sand); color: var(--plum); border-color: var(--sand); }
+.btn-outline { border-color: var(--plum); color: var(--plum); background: transparent; }
+.btn-outline:hover { background: var(--plum); color: var(--sand); }
+.arrow-link { font-weight: 700; color: var(--hibiscus-deep); text-decoration: none; display: inline-flex; gap: 8px; align-items: center; }
+.arrow-link:hover { color: var(--plum); }
+.arrow-link span { transition: transform .15s; }
+.arrow-link:hover span { transform: translateX(4px); }
+
+/* header */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--sand); }
+.site-head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgba(249, 244, 238, .94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.head-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 72px; }
+.brand img { height: 46px; width: auto; }
+.site-nav { display: flex; align-items: center; gap: 6px; }
+.site-nav a:not(.btn) { text-decoration: none; font-weight: 600; font-size: 15.5px; padding: 8px 12px; border-radius: 8px; color: var(--plum); position: relative; }
+.site-nav a:not(.btn):hover { background: var(--sand-2); }
+.site-nav a[aria-current="page"]::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 2px; height: 3px; border-radius: 2px; background: var(--hibiscus); }
+.site-nav .btn { margin-left: 10px; padding: 10px 20px; font-size: 15px; }
+.menu-btn { display: none; font: 600 15px var(--body); color: var(--plum); background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; cursor: pointer; }
+@media (max-width: 900px) {
+  .menu-btn { display: inline-flex; }
+  .site-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 2px; background: var(--sand); border-bottom: 1px solid var(--line); padding: 10px var(--gutter-r) 18px var(--gutter); box-shadow: 0 18px 30px -20px rgba(34, 16, 46, .5); }
+  .site-nav.open { display: flex; }
+  .site-nav a:not(.btn) { padding: 12px 10px; font-size: 17px; }
+  .site-nav a[aria-current="page"]::after { left: 10px; right: auto; width: 28px; bottom: 6px; }
+  .site-nav .btn { margin: 10px 0 0; justify-content: center; }
+}
+
+/* page header used by inner pages */
+.page-head { background: var(--plum); color: var(--sand); position: relative; overflow: hidden; }
+.page-head .wrap { padding-block: 64px 56px; position: relative; z-index: 1; display: grid; gap: 14px; }
+.page-head .eyebrow { color: var(--plumeria); }
+.page-head h1 { font-size: clamp(2.3rem, 5vw, 3.6rem); max-width: 20ch; }
+.page-head p.lede { color: var(--lilac); }
+.page-head .flower { position: absolute; right: -60px; top: -40px; width: 340px; opacity: .14; z-index: 0; }
+@media (max-width: 640px) { .page-head .flower { width: 220px; right: -70px; top: -30px; } }
+
+section.band { padding-block: 88px; }
+section.band.alt { background: var(--sand-2); }
+.sec-head { display: grid; gap: 12px; margin-bottom: 36px; }
+.sec-head h2 { font-size: clamp(2rem, 4vw, 2.75rem); max-width: 22ch; }
+.sec-head p:not(.eyebrow) { color: var(--muted); max-width: 62ch; }
+@media (max-width: 640px) { section.band { padding-block: 64px; } }
+
+/* HOME: hero */
+.hero { position: relative; color: var(--sand); isolation: isolate; background: var(--night); }
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 55%; z-index: -2; }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(34, 16, 46, .9) 0%, rgba(34, 16, 46, .7) 38%, rgba(34, 16, 46, .15) 70%, rgba(34, 16, 46, 0) 100%); }
+.hero .wrap { padding-block: 104px 150px; display: grid; gap: 22px; }
+.hero .eyebrow { color: var(--plumeria); }
+@font-face { font-family: "Florida Vibes"; src: url("FloridaVibes.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+.hero h1 { font-family: "Florida Vibes", var(--display); font-size: clamp(6.5rem, 20vw, 14rem); font-weight: 400; max-width: none; line-height: 1; letter-spacing: 0; }
+.hero p.lede { color: #ecdff3; font-size: 20px; max-width: 46ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+@media (max-width: 720px) {
+  .hero::after { background: linear-gradient(180deg, rgba(34, 16, 46, .78) 0%, rgba(34, 16, 46, .82) 60%, rgba(34, 16, 46, .92) 100%); }
+  .hero .wrap { padding-block: 64px 130px; }
+}
+
+/* HOME: facts strip */
+.facts-wrap { margin-top: -84px; position: relative; z-index: 2; }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--paper); border-radius: 16px; box-shadow: 0 24px 50px -30px rgba(34, 16, 46, .55); border: 1px solid var(--line); }
+.fact { padding: 22px 22px 20px; display: grid; gap: 4px; align-content: start; }
+.fact + .fact { border-left: 1px dashed var(--line); }
+.fact-k { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.fact-v { font-family: var(--display); font-weight: 800; font-size: 30px; line-height: 1.1; color: var(--plum); font-variant-numeric: tabular-nums; }
+.fact-s { font-size: 14px; color: var(--muted); line-height: 1.4; }
+@media (max-width: 980px) {
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fact + .fact { border-left: 0; }
+  .fact { border-top: 1px dashed var(--line); }
+  .fact:nth-child(-n+2) { border-top: 0; }
+  .fact:nth-child(even) { border-left: 1px dashed var(--line); }
+}
+
+/* HOME: departures board */
+.board { background: var(--night); color: var(--plumeria); border-radius: 18px; padding: 22px 22px 18px; box-shadow: 0 30px 60px -36px rgba(34, 16, 46, .8); }
+.board-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding: 0 4px 16px; border-bottom: 1px solid var(--line-dark); }
+.board-title { font-family: var(--mono); font-weight: 600; letter-spacing: .2em; font-size: 15px; display: flex; align-items: center; gap: 12px; }
+.board-title svg { width: 22px; height: 22px; fill: var(--plumeria); }
+.board-tabs { display: inline-flex; background: rgba(255, 255, 255, .06); border-radius: 999px; padding: 4px; gap: 4px; }
+.board-tabs button { font: 600 13px var(--mono); letter-spacing: .08em; color: var(--lilac); background: transparent; border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.board-tabs button[aria-selected="true"] { background: var(--plumeria); color: var(--night); }
+.board-clock { font-family: var(--mono); font-size: 13px; color: var(--lilac); letter-spacing: .08em; font-variant-numeric: tabular-nums; }
+.board-clock b { color: var(--plumeria); font-weight: 600; font-size: 15px; }
+.board-scroll { overflow-x: auto; }
+.board table { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-family: var(--mono); min-width: 620px; }
+.board th { text-align: left; font-size: 11.5px; font-weight: 600; letter-spacing: .16em; color: var(--lilac); padding: 12px 10px 4px; text-transform: uppercase; }
+.board td { padding: 10px; background: rgba(255, 255, 255, .045); font-size: 16px; font-weight: 600; letter-spacing: .06em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.board td:first-child { border-radius: 8px 0 0 8px; }
+.board td:last-child { border-radius: 0 8px 8px 0; }
+.board td small { display: block; font-size: 11.5px; color: var(--lilac); font-weight: 400; letter-spacing: .08em; }
+.board td.num, .board th.num { text-align: right; }
+.board .etops { color: var(--night); background: var(--sunset); border-radius: 4px; padding: 1px 6px; font-size: 11px; margin-left: 8px; letter-spacing: .1em; vertical-align: 2px; }
+.board-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 14px 4px 2px; font-size: 14px; color: var(--lilac); }
+.board-foot a { color: var(--plumeria); font-weight: 600; text-decoration: none; }
+.board-foot a:hover { text-decoration: underline; }
+
+/* HOME: reasons */
+.reasons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.reason { padding: 30px 30px 32px 0; display: grid; gap: 10px; border-bottom: 1px solid var(--line); align-content: start; }
+.reason:nth-child(even) { padding-left: 30px; padding-right: 0; border-left: 1px solid var(--line); }
+.reason .tag { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--hibiscus-deep); }
+.reason h3 { font-size: 26px; }
+.reason p { color: var(--muted); max-width: 52ch; }
+@media (max-width: 760px) { .reasons { grid-template-columns: 1fr; } .reason, .reason:nth-child(even) { padding: 26px 0; border-left: 0; } }
+
+/* HOME: fleet teaser */
+.teaser { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+.teaser-img { background: var(--paper); border-radius: 18px; border: 1px solid var(--line); padding: 10px; }
+.teaser-copy { display: grid; gap: 16px; }
+.teaser-copy h2 { font-size: clamp(2rem, 4vw, 2.75rem); }
+.teaser-copy p { color: var(--muted); }
+@media (max-width: 860px) { .teaser { grid-template-columns: 1fr; gap: 24px; } }
+
+/* CTA band */
+.cta { background: var(--plum); color: var(--sand); position: relative; overflow: hidden; }
+.cta .wrap { padding-block: 84px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 30px; align-items: center; position: relative; z-index: 1; }
+.cta h2 { font-size: clamp(2.2rem, 4.6vw, 3.3rem); max-width: 16ch; }
+.cta p { color: var(--lilac); margin-top: 12px; max-width: 52ch; }
+.cta .flower { position: absolute; left: -90px; bottom: -120px; width: 380px; opacity: .1; }
+@media (max-width: 760px) { .cta .wrap { grid-template-columns: 1fr; padding-block: 64px; } }
+
+/* FLEET */
+.fleet-list { display: grid; gap: 28px; }
+.ac { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); background: var(--paper); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
+.ac-visual { background: var(--paper); display: grid; place-items: center; padding: 20px; min-height: 260px; border-right: 1px solid var(--line); }
+.ac-visual { position: relative; }
+.livery-tag { position: absolute; left: 16px; top: 14px; font: 600 11.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--sand); background: var(--plum); border-radius: 999px; padding: 4px 10px; }
+.ac-visual.art { background: var(--plum); position: relative; overflow: hidden; border-right: 0; }
+.ac-visual.art .flower { position: absolute; right: -30px; bottom: -50px; width: 260px; opacity: .9; }
+.ac-visual.art .big { position: relative; font-family: var(--display); font-weight: 800; font-size: clamp(3.4rem, 8vw, 5.6rem); color: var(--sand); letter-spacing: -.03em; line-height: 1; justify-self: start; align-self: end; }
+.ac-visual.art .soon { position: absolute; left: 20px; top: 18px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--lilac); }
+.ac-body { padding: 28px 30px 30px; display: grid; gap: 16px; align-content: start; }
+.ac-body h2 { font-size: 34px; }
+.ac-role { font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--hibiscus-deep); }
+.ac-body p { color: var(--muted); }
+.specs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: 12px; margin: 0; }
+.specs div { padding: 10px 14px; }
+.specs div + div { border-left: 1px solid var(--line); }
+.specs dt { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.specs dd { margin: 0; font-family: var(--display); font-weight: 700; font-size: 22px; font-variant-numeric: tabular-nums; }
+.specs dd small { font-family: var(--body); font-weight: 500; font-size: 13px; color: var(--muted); }
+.tails { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.tails li { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.tails .reg { font-family: var(--mono); font-weight: 600; font-size: 14px; color: var(--plum); }
+.tails .nm { font-family: var(--display); font-weight: 700; font-size: 18px; }
+.tails .nm small { display: block; font-family: var(--body); font-weight: 400; font-size: 13.5px; color: var(--muted); letter-spacing: 0; }
+.ac-routes { font-size: 14.5px; color: var(--muted); }
+.ac-routes b { color: var(--plum); font-family: var(--mono); font-weight: 600; font-size: 13px; letter-spacing: .04em; }
+@media (max-width: 920px) { .ac { grid-template-columns: 1fr; } .ac-visual { border-right: 0; border-bottom: 1px solid var(--line); min-height: 200px; } }
+@media (max-width: 480px) { .specs { grid-template-columns: 1fr; } .specs div + div { border-left: 0; border-top: 1px solid var(--line); } .ac-body { padding: 22px 20px 24px; } }
+.naming { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.naming div { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: grid; gap: 8px; }
+.naming h3 { font-size: 22px; }
+.naming p { color: var(--muted); }
+@media (max-width: 760px) { .naming { grid-template-columns: 1fr; } }
+
+/* NETWORK */
+.maps { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+.map-card { background: var(--night); border-radius: 18px; padding: 20px 20px 16px; color: var(--sand); display: grid; gap: 12px; align-content: start; }
+.map-card h3 { font-size: 22px; }
+.map-card .sub { font-size: 14px; color: var(--lilac); }
+.map-card svg { width: 100%; height: auto; display: block; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--lilac); padding-top: 10px; border-top: 1px solid var(--line-dark); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend i { display: inline-block; width: 26px; height: 0; border-top: 3px solid; }
+.lg-sched { border-color: var(--sunset) !important; }
+.lg-charter { border-color: var(--plumeria) !important; border-top-style: dashed !important; }
+.lg-train { border-color: var(--lilac) !important; border-top-style: dotted !important; }
+.lg-main { border-color: var(--hibiscus) !important; border-top-style: dashed !important; }
+.lg-dot { width: 10px !important; height: 10px !important; border: 2px solid var(--lilac) !important; border-radius: 50%; }
+@media (max-width: 900px) { .maps { grid-template-columns: 1fr; } }
+
+/* map svg classes */
+.m-sea { fill: var(--night); }
+.m-land { fill: #3a1f4b; stroke: #573574; stroke-width: 1; }
+.m-isle { fill: #44245a; stroke: #6a4387; stroke-width: 1; }
+.m-r-sched { stroke: var(--sunset); stroke-width: 2.4; fill: none; stroke-linecap: round; }
+.m-r-charter { stroke: var(--plumeria); stroke-width: 2; fill: none; stroke-dasharray: 6 5; }
+.m-r-train { stroke: var(--lilac); stroke-width: 1.8; fill: none; stroke-dasharray: 1.5 5; stroke-linecap: round; opacity: .85; }
+.m-r-main { stroke: var(--hibiscus); stroke-width: 2.6; fill: none; stroke-dasharray: 8 7; animation: dash 40s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -600; } }
+.m-dot { fill: var(--hibiscus); stroke: var(--sand); stroke-width: 2; }
+.m-hub { fill: var(--plumeria); stroke: var(--sand); stroke-width: 2.5; }
+.m-alt { fill: var(--night); stroke: var(--lilac); stroke-width: 2; }
+.m-small { fill: var(--lilac); }
+.m-lbl { fill: var(--sand); font: 600 13px var(--body); }
+.m-lbl-code { fill: var(--plumeria); font: 600 11.5px var(--mono); letter-spacing: .06em; }
+.m-lbl-sub { fill: var(--lilac); font: 400 11.5px var(--body); }
+.m-ocean { fill: #6a4c80; font: italic 400 13px var(--body); letter-spacing: .3em; }
+
+.tt-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.chip { font: 600 14px var(--body); color: var(--plum); background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; }
+.chip b { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 600; }
+.chip[aria-pressed="true"] { background: var(--plum); color: var(--sand); border-color: var(--plum); }
+.chip[aria-pressed="true"] b { color: var(--plumeria); }
+.table-scroll { overflow-x: auto; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; }
+.tt { width: 100%; border-collapse: collapse; min-width: 760px; font-variant-numeric: tabular-nums; }
+.tt th { text-align: left; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; padding: 14px 16px; border-bottom: 1px solid var(--line); background: var(--sand); position: sticky; top: 0; }
+.tt td { padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 15.5px; }
+.tt tr:last-child td { border-bottom: 0; }
+.tt tbody tr:hover td { background: #fcf8f3; }
+.tt .fn { font-family: var(--mono); font-weight: 600; font-size: 15px; }
+.tt .code { font-family: var(--mono); font-weight: 600; font-size: 15px; }
+.tt small { display: block; color: var(--muted); font-size: 13px; }
+.tt .num { text-align: right; }
+.kind { display: inline-block; margin-top: 4px; font: 600 10.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; }
+.k-interisland { background: #fde7d3; color: #9a4a06; }
+.k-mainland { background: #fbdadc; color: #a3141d; }
+.k-charter { background: #fff1cc; color: #7c5a00; }
+.k-training { background: #ece3f3; color: #5b2d74; }
+.tt-note { font-size: 14px; color: var(--muted); margin-top: 14px; max-width: 80ch; }
+
+/* FLY */
+.needs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.need { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: grid; gap: 6px; align-content: start; }
+.need .k { font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--hibiscus-deep); }
+.need h3 { font-size: 20px; }
+.need p { font-size: 15px; color: var(--muted); }
+@media (max-width: 980px) { .needs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .needs { grid-template-columns: 1fr; } }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; counter-reset: step; position: relative; }
+.steps li { counter-increment: step; padding: 0 18px 0 0; display: grid; gap: 8px; align-content: start; position: relative; }
+.steps li::before { content: counter(step); font-family: var(--display); font-weight: 800; font-size: 20px; width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; background: var(--plum); color: var(--sand); position: relative; z-index: 1; }
+.steps li::after { content: ""; position: absolute; top: 23px; left: 46px; right: 0; border-top: 2px dashed var(--line); }
+.steps li:last-child::after { display: none; }
+.steps h3 { font-size: 20px; margin-top: 8px; }
+.steps p { font-size: 15px; color: var(--muted); }
+@media (max-width: 900px) {
+  .steps { grid-template-columns: 1fr; gap: 22px; }
+  .steps li { grid-template-columns: 46px minmax(0, 1fr); column-gap: 16px; padding: 0; }
+  .steps li::before { grid-row: span 2; }
+  .steps li::after { top: 46px; bottom: -22px; left: 22px; right: auto; border-top: 0; border-left: 2px dashed var(--line); }
+  .steps h3 { margin-top: 10px; }
+}
+
+.ladder { display: grid; gap: 8px; }
+.rung { display: grid; grid-template-columns: 210px minmax(0, 1fr) 150px; gap: 16px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.rung:last-child { border-bottom: 0; }
+.rung .rk { font-family: var(--display); font-weight: 700; font-size: 19px; }
+.rung .rk small { font-family: var(--mono); font-weight: 600; font-size: 11.5px; color: var(--muted); letter-spacing: .08em; margin-left: 8px; }
+.rung .bar { height: 12px; background: var(--sand-2); border-radius: 999px; overflow: hidden; }
+.rung .bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--sunset), var(--hibiscus)); min-width: 4px; }
+.rung .req { font-family: var(--mono); font-size: 13.5px; text-align: right; font-variant-numeric: tabular-nums; }
+.rung .req small { display: block; color: var(--muted); font-size: 12px; }
+.ladder-scale { display: grid; grid-template-columns: 210px minmax(0, 1fr) 150px; gap: 16px; font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+.ladder-scale div { display: flex; justify-content: space-between; }
+@media (max-width: 700px) {
+  .rung, .ladder-scale { grid-template-columns: minmax(0, 1fr) auto; }
+  .rung .bar, .ladder-scale div { grid-column: 1 / -1; grid-row: 2; }
+  .ladder-scale > span { display: none; }
+}
+
+.scoring { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.score-card { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 22px 22px 14px; display: grid; gap: 4px; align-content: start; }
+.score-card h3 { font-size: 21px; margin-bottom: 6px; }
+.score-card ul { list-style: none; margin: 0; padding: 0; }
+.score-card li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 15px; align-items: baseline; }
+.score-card li small { display: block; color: var(--muted); font-size: 13px; }
+.pts { font-family: var(--mono); font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; }
+.pts.plus { color: #1d7a45; }
+.pts.minus { color: var(--hibiscus-deep); }
+.pts.flag { color: var(--plum-soft); font-size: 11.5px; letter-spacing: .1em; }
+.score-example { margin-top: 20px; background: var(--plum); color: var(--sand); border-radius: 16px; padding: 22px 24px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: center; }
+.score-example p { color: var(--lilac); font-size: 15px; }
+.score-example strong { color: var(--sand); }
+.score-example .total { font-family: var(--display); font-weight: 800; font-size: 44px; color: var(--plumeria); line-height: 1; text-align: right; }
+.score-example .total small { display: block; font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: .12em; color: var(--lilac); }
+@media (max-width: 960px) { .scoring { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .score-example { grid-template-columns: 1fr; } .score-example .total { text-align: left; } }
+
+.acars { background: var(--night); color: var(--sand); border-radius: 22px; padding: 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 40px; }
+.acars .eyebrow { color: var(--plumeria); }
+.acars h2 { font-size: clamp(2rem, 4vw, 2.6rem); margin-top: 10px; }
+.acars p { color: var(--lilac); margin-top: 14px; }
+.acars ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+.acars li { padding: 14px 0; border-top: 1px solid var(--line-dark); display: grid; gap: 2px; }
+.acars li b { font-family: var(--display); font-size: 18px; color: var(--sand); }
+.acars li span { font-size: 14.5px; color: var(--lilac); }
+@media (max-width: 900px) { .acars { grid-template-columns: 1fr; padding: 28px 22px; gap: 24px; } }
+@media (max-width: 560px) { .acars ul { grid-template-columns: 1fr; } }
+
+.faq { display: grid; gap: 10px; max-width: 860px; }
+.faq details { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 0 22px; }
+.faq summary { cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 19px; padding: 18px 0; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--mono); color: var(--hibiscus-deep); font-size: 22px; line-height: 1; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { padding: 0 0 18px; color: var(--muted); max-width: 70ch; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.prose { display: grid; gap: 18px; font-size: 18px; max-width: 64ch; }
+.prose h2 { font-size: 30px; margin-top: 12px; }
+.prose p { color: #4f3a5e; }
+.side { display: grid; gap: 16px; }
+.contact { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: grid; gap: 10px; }
+.contact h3 { font-size: 20px; }
+.contact p { color: var(--muted); font-size: 15px; }
+.copy-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.copy-row code { font-family: var(--mono); font-size: 15px; background: var(--sand); padding: 8px 12px; border-radius: 8px; user-select: all; }
+.copy-btn { font: 600 14px var(--body); background: var(--plum); color: var(--sand); border: 0; border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+.notice-card { background: var(--sand-2); border-radius: 16px; padding: 22px; display: grid; gap: 8px; border: 1px solid var(--line); }
+.notice-card h3 { font-size: 18px; }
+.notice-card p { font-size: 15px; color: var(--muted); }
+@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+/* footer */
+footer { background: var(--night); color: var(--lilac); }
+footer .wrap { padding-block: 56px 40px; display: grid; gap: 32px; }
+.foot-top { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); gap: 32px; }
+.foot-brand { display: grid; gap: 12px; align-content: start; }
+.foot-brand .logo-chip { background: var(--sand); border-radius: 12px; padding: 10px 14px; justify-self: start; }
+.foot-brand .logo-chip img { height: 40px; width: auto; }
+.foot-brand p { font-size: 15px; max-width: 40ch; }
+footer h4 { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--plumeria); margin-bottom: 12px; font-weight: 600; }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+footer a { color: var(--sand); text-decoration: none; font-size: 15px; }
+footer a:hover { color: var(--plumeria); text-decoration: underline; }
+.foot-bottom { border-top: 1px solid var(--line-dark); padding-top: 22px; font-size: 13.5px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+@media (max-width: 760px) { .foot-top { grid-template-columns: 1fr 1fr; } .foot-brand { grid-column: 1 / -1; } }
+
+/* JOIN */
+.btn-discord { background: #5865f2; color: #fff; }
+.btn-discord:hover { box-shadow: 0 14px 28px -14px #5865f2; }
+.btn-discord svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
+.j-hero { background: var(--plum); color: var(--sand); position: relative; overflow: hidden; }
+.j-hero .flower { position: absolute; right: -80px; top: -70px; width: 380px; opacity: .13; pointer-events: none; }
+.j-hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-block: 64px 72px; position: relative; }
+.j-hero .eyebrow { color: var(--plumeria); }
+.j-hero h1 { font-size: clamp(2.5rem, 5.6vw, 4rem); font-weight: 800; margin: 14px 0 16px; }
+.j-hero h1 em { font-style: normal; color: var(--plumeria); }
+.j-hero .lede { color: #ecdff3; }
+.j-ticket { background: var(--sand); color: var(--plum); border-radius: 20px; padding: 22px 24px 20px; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .6); transform: rotate(-1.5deg); }
+.j-ticket img { margin: -6px -8px 10px; width: calc(100% + 16px); max-width: none; height: auto; aspect-ratio: auto; object-fit: contain; }
+.j-ticket-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; border-top: 2px dashed var(--line); padding-top: 14px; }
+.j-ticket-row span { display: block; font: 600 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.j-ticket-row b { font: 800 22px var(--display); }
+.j-ticket-row b small { font: 500 13px var(--body); color: var(--muted); }
+@media (max-width: 860px) { .j-hero .wrap { grid-template-columns: 1fr; padding-block: 48px 56px; } .j-art { max-width: 520px; } }
+.j-strip { background: var(--paper); border-bottom: 1px solid var(--line); }
+.j-strip .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.j-strip div { padding: 18px 18px 16px; display: grid; gap: 2px; }
+.j-strip div + div { border-left: 1px dashed var(--line); }
+.j-strip span { font: 600 11.5px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.j-strip b { font: 800 24px var(--display); }
+@media (max-width: 720px) { .j-strip .wrap { grid-template-columns: 1fr 1fr; } .j-strip div:nth-child(3) { border-left: 0; } .j-strip div:nth-child(n+3) { border-top: 1px dashed var(--line); } }
+.j-timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+.j-tl { display: grid; grid-template-columns: 64px minmax(0, 1fr); column-gap: 22px; position: relative; padding-bottom: 28px; }
+.j-tl:last-child { padding-bottom: 0; }
+.j-tl::before { content: ""; position: absolute; left: 31px; top: 64px; bottom: 0; border-left: 2px dashed var(--line); }
+.j-tl:last-child::before { display: none; }
+.j-tl .n { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: var(--plum); color: var(--sand); font: 800 26px var(--display); position: relative; z-index: 1; }
+.j-tl:last-child .n { background: var(--hibiscus-deep); }
+.j-card { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; }
+.j-card h3 { font-size: 24px; margin-bottom: 8px; }
+.j-card p { color: var(--muted); }
+.j-card p + p { margin-top: 10px; }
+.j-card code { font: 600 14.5px var(--mono); background: var(--sand); color: var(--plum); padding: 2px 7px; border-radius: 6px; }
+.j-card .btn { margin-top: 14px; }
+.j-meta { display: grid; align-content: start; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.j-meta div { padding: 10px 14px; display: grid; gap: 2px; }
+.j-meta div + div { border-top: 1px solid var(--line); }
+.j-meta span { font: 600 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.j-meta b { font-weight: 600; font-size: 15.5px; }
+@media (max-width: 760px) { .j-tl { grid-template-columns: 44px minmax(0, 1fr); column-gap: 14px; } .j-tl .n { width: 44px; height: 44px; font-size: 19px; } .j-tl::before { left: 21px; top: 44px; } .j-card { grid-template-columns: 1fr; padding: 20px; gap: 16px; } }
+.j-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.j-list { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
+.j-list h3 { font-size: 22px; margin-bottom: 14px; }
+.j-list ul { list-style: none; margin: 0; padding: 0; }
+.j-list li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 11px 0; border-top: 1px solid var(--line); align-items: start; }
+.j-list li svg { width: 22px; height: 22px; margin-top: 2px; }
+.j-list li small { display: block; color: var(--muted); font-size: 14px; }
+.j-opt { display: inline-block; margin-left: 6px; font: 600 10.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; background: #ece3f3; color: var(--plum-soft); vertical-align: 2px; }
+@media (max-width: 760px) { .j-lists { grid-template-columns: 1fr; } }
+.j-week { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.j-week div { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: grid; gap: 8px; align-content: start; }
+.j-week .k { font: 600 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--hibiscus-deep); }
+.j-week h3 { font-size: 21px; }
+.j-week p { color: var(--muted); font-size: 15.5px; }
+@media (max-width: 860px) { .j-week { grid-template-columns: 1fr; } }
+.faq details p a { color: var(--hibiscus-deep); font-weight: 600; }
+
+/* first-visit notice */
+.sim-notice { position: fixed; left: 0; right: 0; bottom: 0; z-index: 70; background: var(--night); color: var(--sand); border-top: 3px solid var(--sunset); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.sim-notice .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding-block: 14px; }
+.sim-notice p { font-size: 14.5px; color: var(--lilac); max-width: 80ch; }
+.sim-notice strong { color: var(--sand); }
+.sim-notice button { font: 700 14px var(--body); background: var(--sunset); color: var(--night); border: 0; border-radius: 999px; padding: 9px 18px; cursor: pointer; }
+</style>
+
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="hibiscus" viewBox="-100 -100 200 200">
+      <g fill="#ec3f47">
+        <ellipse cx="0" cy="-48" rx="38" ry="50"/>
+        <ellipse cx="0" cy="-48" rx="38" ry="50" transform="rotate(72)"/>
+        <ellipse cx="0" cy="-48" rx="38" ry="50" transform="rotate(144)"/>
+        <ellipse cx="0" cy="-48" rx="38" ry="50" transform="rotate(216)"/>
+        <ellipse cx="0" cy="-48" rx="38" ry="50" transform="rotate(288)"/>
+      </g>
+      <g fill="#f79031" opacity=".85">
+        <ellipse cx="0" cy="-34" rx="20" ry="30"/>
+        <ellipse cx="0" cy="-34" rx="20" ry="30" transform="rotate(72)"/>
+        <ellipse cx="0" cy="-34" rx="20" ry="30" transform="rotate(144)"/>
+        <ellipse cx="0" cy="-34" rx="20" ry="30" transform="rotate(216)"/>
+        <ellipse cx="0" cy="-34" rx="20" ry="30" transform="rotate(288)"/>
+      </g>
+      <circle r="12" fill="#ffc24b"/>
+      <path d="M0 0 L46 -58" stroke="#ffc24b" stroke-width="6" stroke-linecap="round"/>
+      <g fill="#ffc24b"><circle cx="50" cy="-64" r="5"/><circle cx="40" cy="-68" r="4"/><circle cx="56" cy="-54" r="4"/></g>
+    </symbol>
+    <symbol id="plane" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></symbol>
+  </defs>
+</svg>
 
-    <nav class="navbar">
-        <a href="#home" class="logo">
-            <img src="Logo.png" alt="Aloha Airlines Virtual Logo" class="logo-img">
-        </a>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#stats">Live Stats</a></li>
-            <li><a href="#routes">Route Map</a></li>
-            <li><a href="#fleet">Fleet</a></li>
-            <li><a href="join/" class="btn-primary">Join Us</a></li>
-        </ul>
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="#home" aria-label="Aloha Airlines Virtual home"><img src="Logo.png" alt="Aloha Airlines" width="110" height="46"></a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#fleet" data-nav="fleet">Fleet</a>
+      <a href="#network" data-nav="network">Network</a>
+      <a href="#fly" data-nav="fly">Fly with us</a>
+      <a href="#about" data-nav="about">About</a>
+      <a class="btn btn-primary join-link" href="#join">Join the crew</a>
     </nav>
+  </div>
+</header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>The Spirit of Aloha, <br>Virtually.</h1>
-            <p>Connect Hawaii to the world on the VATSIM network. Experience premium island hopping and long-haul operations with a community that feels like family.</p>
-            <div class="hero-buttons">
-                <a href="join/" class="btn-primary">Become a Pilot</a>
-                <a href="#fleet" class="btn-secondary">View Fleet</a>
-            </div>
-        </div>
-    </section>
+<main>
 
-    <section id="stats" class="stats-section">
-        <div class="container">
-            <h2>Live Operations</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3 id="active-flights">5</h3>
-                    <p>Flights Airborne</p>
-                </div>
-                <div class="stat-card">
-                    <h3 id="total-pilots">78</h3>
-                    <p>Registered Pilots</p>
-                </div>
-                <div class="stat-card">
-                    <h3 id="hours-flown">3,940</h3>
-                    <p>Total Hours Logged</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="routes" class="route-map-section">
-        <div class="route-map-container">
-            <div class="route-header">
-                <h2>Our Route Network</h2>
-                <p>Connecting Hawaii Like Never Before.</p>
-            </div>
-            
-            <div class="map-card">
-                <div class="svg-container">
-                    <svg viewBox="0 0 1100 550" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                                <feGaussianBlur stdDeviation="3" result="glow" />
-                                <feComposite in="SourceGraphic" in2="glow" operator="over" />
-                            </filter>
-                        </defs>
-
-                        <g fill="#240e34" stroke="#4a2268" stroke-width="1.5">
-                            <path d="M 850,20 Q 860,110 840,190 T 890,320 T 960,430 L 1100,430 L 1100,20 Z" />
-                            <ellipse cx="140" cy="300" rx="20" ry="15" />
-                            <ellipse cx="230" cy="340" rx="24" ry="16" transform="rotate(-15 230 340)" />
-                            <ellipse cx="305" cy="345" rx="18" ry="8" transform="rotate(-10 305 345)" />
-                            <ellipse cx="310" cy="380" rx="10" ry="12" />
-                            <ellipse cx="365" cy="365" rx="22" ry="16" transform="rotate(-20 365 365)" />
-                            <polygon points="410,410 475,415 480,480 435,510 395,450" />
-                        </g>
-
-                        <g fill="none">
-                            <path class="transpac-route" d="M 365,365 Q 600,160 850,210" />
-                            <path class="transpac-route" d="M 365,365 Q 640,240 965,270" />
-                            <path class="transpac-route" d="M 365,365 Q 640,320 900,360" />
-                        </g>
-
-                        <g fill="none" class="interisland-route">
-                            <path d="M 140,300 L 230,340" />
-                            <path d="M 230,340 L 305,345" />
-                            <path d="M 230,340 L 310,380" />
-                            <path d="M 230,340 L 365,365" />
-                            <path d="M 230,340 L 415,445" />
-                            <path d="M 230,340 L 475,440" />
-                            <path d="M 365,365 L 305,345" />
-                            <path d="M 365,365 L 310,380" />
-                            <path d="M 365,365 L 415,445" />
-                            <path d="M 365,365 L 475,440" />
-                            <path d="M 415,445 L 475,440" />
-                        </g>
-
-                        <g class="node-pin">
-                            <circle class="marker" cx="140" cy="300" r="5" fill="#ff5964" filter="url(#glow)" />
-                            <text x="140" y="280" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">Līhuʻe (LIH)</text>
-                        </g>
-                        <g class="node-pin">
-                            <circle class="marker" cx="230" cy="340" r="6" fill="#ffb703" filter="url(#glow)" />
-                            <text x="230" y="325" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">Honolulu (HNL)</text>
-                        </g>
-                        <g class="node-pin">
-                            <circle class="marker" cx="305" cy="345" r="4" fill="#ff5964" />
-                            <text x="305" y="332" fill="#ffffff" font-size="11" font-weight="500" text-anchor="middle">Molokaʻi (MKK)</text>
-                        </g>
-                        <g class="node-pin">
-                            <circle class="marker" cx="310" cy="380" r="4" fill="#ff5964" />
-                            <text x="270" y="395" fill="#ffffff" font-size="11" font-weight="500" text-anchor="middle">Lānaʻi (LNY)</text>
-                        </g>
-                        <g class="node-pin">
-                            <circle class="marker" cx="365" cy="365" r="7" fill="#ff5964" stroke="#ffffff" stroke-width="2" filter="url(#glow)" />
-                            <text x="375" y="350" fill="#ffb703" font-size="14" font-weight="700" text-anchor="start">Kahului-Maui (OGG)</text>
-                        </g>
-                        <g class="node-pin">
-                            <circle class="marker" cx="415" cy="445" r="5" fill="#ff5964" />
-                            <text x="350" y="455" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">Kailua-Kona (KOA)</text>
-                        </g>
-                        <g class="node-pin">
-                            <circle class="marker" cx="475" cy="440" r="5" fill="#ff5964" />
-                            <text x="515" y="445" fill="#ffffff" font-size="12" font-weight="600" text-anchor="middle">Hilo (ITO)</text>
-                        </g>
-                        <g class="node-pin">
-                            <circle class="marker" cx="850" cy="210" r="6" fill="#ff5964" filter="url(#glow)" />
-                            <text x="835" y="205" fill="#ffffff" font-size="13" font-weight="600" text-anchor="end">Oakland (OAK)</text>
-                        </g>
-                        <g class="node-pin">
-                            <circle class="marker" cx="965" cy="270" r="6" fill="#ff5964" filter="url(#glow)" />
-                            <text x="980" y="275" fill="#ffffff" font-size="13" font-weight="600" text-anchor="start">Las Vegas (LAS)</text>
-                        </g>
-                        <g class="node-pin">
-                            <circle class="marker" cx="900" cy="360" r="6" fill="#ff5964" filter="url(#glow)" />
-                            <text x="915" y="375" fill="#ffffff" font-size="13" font-weight="600" text-anchor="start">Long Beach (LGB)</text>
-                        </g>
-                    </svg>
-                </div>
-
-                <div class="map-legend">
-                    <div class="legend-item">
-                        <div class="legend-line" style="background: #ff5964; border-top: 2px dashed #ff5964;"></div>
-                        <span>Mainland (Mainland ⇄ Maui)</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-line" style="background: #ffb703;"></div>
-                        <span>Interisland Daily Network</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-dot" style="background: #ff5964; border: 2px solid #fff;"></div>
-                        <span>Hub & Destinations</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="fleet" class="fleet-section">
-        <div class="container">
-            <h2>Our Virtual Fleet</h2>
-            <p class="subtitle">From inter-island hops to transpacific journeys.</p>
-            <div class="fleet-grid">
-                <div class="fleet-card">
-                    <div class="fleet-img b738"></div>
-                    <div class="fleet-info">
-                        <h3>Boeing 737-800</h3>
-                        <p>Our Flagship.<br>Our -800's connect the Isles to the Mainland, providing unmatched service to the West Coast.</p>
-                        <span class="badge">ETOPS</span>
-                    </div>
-                </div>
-                <div class="fleet-card">
-                    <div class="fleet-img b737"></div>
-                    <div class="fleet-info">
-                        <h3>Boeing 737-700</h3>
-                        <p>Our Workhorse.<br>Our -700's bring the Hawaiian Islands closer than ever before.</p>
-                        <span class="badge">Short/Medium Haul</span>
-                    </div>
-                </div>
-                <div class="fleet-card">
-                    <div class="fleet-img b736"></div>
-                    <div class="fleet-info">
-                        <h3>Boeing 737-600</h3>
-                        <p>Our Island Hopper.<br>Our -600 is a short-field specialist, connecting Moloka'i and Lāna'i to our hubs.</p>
-                        <span class="badge">Short Haul</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="join" class="join-section">
-        <div class="container msg-box">
-            <h2>Ready for Departure?</h2>
-            <p>We are always looking for passionate pilots to join our crew.</p>
-            <a href="join/" class="btn-join">Join Now</a>
-        </div>
-    </section>
-
-    <!-- DISCLAIMER POPUP MODAL HTML -->
-    <div id="sim-disclaimer-modal" class="sim-banner-wrapper">
-        <div class="sim-banner-content">
-            <div class="sim-banner-text">
-                <span class="sim-banner-badge">Notice</span>
-                <h4>Flight Simulation Disclaimer</h4>
-                <p>
-                    This website is intended <strong>strictly for flight simulation purposes only</strong> within the VATSIM network. 
-                    We are not affiliated with, endorsed by, or representative of the real-world Aloha Airlines or any commercial airline.                </p>
-            </div>
-            <div class="sim-banner-actions">
-                <button id="accept-disclaimer-btn" class="btn-acknowledge">I Understand</button>
-            </div>
-        </div>
+<!-- ============ HOME ============ -->
+<div class="view" data-view="home">
+  <section class="hero">
+    <img class="hero-img" src="main.webp" alt="An Aloha Boeing 737 in classic flower livery parked at the Lānaʻi terminal">
+    <div class="wrap">
+      <h1>Aloha!</h1>
+      <p class="lede">A virtual airline flying Hawaiʻi from our hub on Maui. Quick interisland hops, short-field charters to Molokaʻi and Lānaʻi, and ETOPS crossings to the West Coast.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#fly">Become a pilot</a>
+        <a class="btn btn-ghost" href="#network">See the network</a>
+      </div>
     </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2026 Aloha Airlines Virtual. For flight simulation use only. Not affiliated with the real-world airline.</p>
-    </footer>
-</body>
-<script src="main.js"></script>
-</html>
+  <div class="wrap facts-wrap">
+    <div class="facts">
+      <div class="fact"><span class="fact-k">Hub</span><span class="fact-v">OGG</span><span class="fact-s">Kahului, Maui</span></div>
+      <div class="fact"><span class="fact-k">Airports</span><span class="fact-v">10</span><span class="fact-s">on six islands and the West Coast</span></div>
+      <div class="fact"><span class="fact-k">Schedule</span><span class="fact-v">30 legs</span><span class="fact-s">interisland, mainland, charter</span></div>
+      <div class="fact"><span class="fact-k">Fleet</span><span class="fact-v">9 aircraft</span><span class="fact-s">737-600 to 757-200</span></div>
+    </div>
+  </div>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">From the schedule</p>
+        <h2>Departures</h2>
+        <p>Every flight on this board is a real leg in our timetable. Pick one, file it in SimBrief, and you're on your way.</p>
+      </div>
+      <div class="board" id="board">
+        <div class="board-top">
+          <span class="board-title"><svg aria-hidden="true"><use href="#plane"/></svg>DEPARTURES</span>
+          <div class="board-tabs" role="tablist" aria-label="Departure airport">
+            <button role="tab" aria-selected="true" data-origin="PHOG" id="tab-ogg">KAHULUI · OGG</button>
+            <button role="tab" aria-selected="false" data-origin="PHNL" id="tab-hnl">HONOLULU · HNL</button>
+          </div>
+          <span class="board-clock">HAWAIʻI <b id="clock-hst">--:--</b> &nbsp;·&nbsp; UTC <span id="clock-z">--:--</span></span>
+        </div>
+        <div class="board-scroll">
+          <table>
+            <thead><tr><th>Local</th><th>Flight</th><th>Destination</th><th>Aircraft</th><th class="num">Distance</th></tr></thead>
+            <tbody id="board-body"></tbody>
+          </table>
+        </div>
+        <div class="board-foot">
+          <span>Local times are Hawaiʻi time (HST, UTC−10). The airline runs on UTC.</span>
+          <a href="#network">Full timetable →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Why fly Aloha</p>
+        <h2>An island airline you can actually fly</h2>
+      </div>
+      <div class="reasons">
+        <div class="reason">
+          <span class="tag">The network</span>
+          <h3>Real Hawaiʻi flying</h3>
+          <p>Interisland legs from 30 to 229 nm, short-field work into Lānaʻi and Molokaʻi, and Pacific crossings of more than 2,000 nm. Fly a quick Kona turn, or a 2,000 nm ETOPS crossing to Oakland.</p>
+        </div>
+        <div class="reason">
+          <span class="tag">AloCARS</span>
+          <h3>Our own flight tracker</h3>
+          <p>AloCARS is built in-house for this airline. It books your flight, tracks it in MSFS or X-Plane, and files your report the moment you park.</p>
+        </div>
+        <div class="reason">
+          <span class="tag">Your career</span>
+          <h3>Cadet to Senior Captain</h3>
+          <p>Seven ranks, earned with hours and points. Points come from flying well: stable approaches, soft landings, and flying online.</p>
+        </div>
+        <div class="reason">
+          <span class="tag">The crew</span>
+          <h3>A community on Discord</h3>
+          <p>Group flights, questions, screenshots and help with your first sector all happen in our Discord. Pull up a seat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap teaser">
+      <div class="teaser-img"><img src="752.png" alt="Side profile of an Aloha Airlines Virtual Boeing 757-200 in purple hibiscus livery" width="2200" height="825" style="height:auto" loading="lazy"></div>
+      <div class="teaser-copy">
+        <p class="eyebrow">Our fleet</p>
+        <h2>Nine aircraft, each with a Hawaiian name</h2>
+        <p>Each aircraft has unique name, storied history, and flyable livery painted by the HUES team.</p>
+        <a class="arrow-link" href="#fleet">Meet the fleet <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <svg class="flower" viewBox="0 0 200 200" aria-hidden="true"><use href="#hibiscus" width="200" height="200"/></svg>
+    <div class="wrap">
+      <div>
+        <h2>Ready for departure?</h2>
+        <p>We're always looking for pilots who love the islands. Sign up, get your Pilot ID, and fly your first leg this week.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-primary join-link" href="#join">Join the crew</a>
+        <a class="btn btn-ghost discord-link" href="https://discord.gg/k74wBamjku" target="_blank" rel="noopener">Join our Discord</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ FLEET ============ -->
+<div class="view" data-view="fleet" hidden>
+  <section class="page-head">
+    <svg class="flower" viewBox="0 0 200 200" aria-hidden="true"><use href="#hibiscus" width="200" height="200"/></svg>
+    <div class="wrap">
+      <p class="eyebrow">Fleet</p>
+      <h1>Four types, nine aircraft</h1>
+      <p class="lede">An all-Boeing fleet sized for the islands: 737s for everything from a 30 nm hop to a 2,169 nm crossing, and the 757 for our longest leg.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap fleet-list" id="fleet-list"></div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Names on the nose</p>
+        <h2>How our aircraft are named</h2>
+      </div>
+      <div class="naming">
+        <div><h3>Our 737s</h3><p>Each 737 is named for a Hawaiian mountain, from Hāʻupu on Kauaʻi to Mauna Kea on Hawaiʻi Island, the highest point in the state at 13,803 ft.</p></div>
+        <div><h3>Our 757s</h3><p>The 757s honour Hawaiian royalty: King Kamehameha I, who united the islands in 1810, and Queen Liliʻuokalani, the last monarch of the Hawaiian Kingdom.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ NETWORK ============ -->
+<div class="view" data-view="network" hidden>
+  <section class="page-head">
+    <svg class="flower" viewBox="0 0 200 200" aria-hidden="true"><use href="#hibiscus" width="200" height="200"/></svg>
+    <div class="wrap">
+      <p class="eyebrow">Route network</p>
+      <h1>Six islands and three gateways to the mainland</h1>
+      <p class="lede">Everything starts at Kahului on Maui (OGG), with a busy interisland operation out of Honolulu (HNL) and nonstop service to Oakland, Long Beach and Las Vegas.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="maps">
+        <div class="map-card">
+          <div><h3>Interisland</h3><p class="sub">Eight airports across the Hawaiian chain</p></div>
+          <svg id="map-islands" role="img" aria-label="Map of the Hawaiian Islands showing our interisland routes"></svg>
+          <div class="legend"><span><i class="lg-sched"></i>Scheduled</span><span><i class="lg-charter"></i>Charter</span></div>
+        </div>
+        <div class="map-card">
+          <div><h3>Mainland</h3><p class="sub">ETOPS crossings from Maui to the West Coast</p></div>
+          <svg id="map-mainland" role="img" aria-label="Map of the eastern Pacific showing flights from Maui to Oakland, Long Beach and Las Vegas"></svg>
+          <div class="legend"><span><i class="lg-main"></i>Mainland service</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Timetable</p>
+        <h2>Every flight we fly</h2>
+        <p>Scheduled flights have a set departure time in UTC. Charters can be flown whenever suits you.</p>
+      </div>
+      <div class="tt-tools" id="tt-tools" role="group" aria-label="Show flights"></div>
+      <div class="table-scroll">
+        <table class="tt">
+          <thead><tr><th>Flight</th><th>From</th><th>To</th><th>Departs</th><th>Aircraft</th><th class="num">Distance</th></tr></thead>
+          <tbody id="tt-body"></tbody>
+        </table>
+      </div>
+      <p class="tt-note">Spokane (GEG) and Tucson (TUS) are on file as mainland alternates. Aircraft in brackets can be swapped in for that flight.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ============ FLY WITH US ============ -->
+<div class="view" data-view="fly" hidden>
+  <section class="page-head">
+    <svg class="flower" viewBox="0 0 200 200" aria-hidden="true"><use href="#hibiscus" width="200" height="200"/></svg>
+    <div class="wrap">
+      <p class="eyebrow">Fly with us</p>
+      <h1>From your first sign-up to Senior Captain</h1>
+      <p class="lede">No experience needed, just a simulator and a love of the islands. Here's how flying with Aloha works.</p>
+      <div class="actions"><a class="btn btn-primary join-link" href="#join">Join the crew</a></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">What you need</p><h2>Before your first flight</h2></div>
+      <div class="needs">
+        <div class="need"><span class="k">Simulator</span><h3>MSFS or X-Plane</h3><p>Microsoft Flight Simulator 2020 or 2024, or X-Plane 11 or 12.</p></div>
+        <div class="need"><span class="k">Network · optional</span><h3>VATSIM, if you like</h3><p>Not required. Flying online with AloCARS adds live ATC and real traffic, and earns bonus points. IVAO counts too.</p></div>
+        <div class="need"><span class="k">Computer</span><h3>Windows PC</h3><p>AloCARS, our flight tracker, runs on Windows alongside your sim.</p></div>
+        <div class="need"><span class="k">Flight planning</span><h3>SimBrief</h3><p>A free SimBrief account for your flight plans. AloCARS opens it for you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">How it works</p><h2>Five steps to your first report</h2></div>
+      <ol class="steps">
+        <li><h3>Create your account</h3><p>Sign up for your Pilot ID: HIA followed by four digits.</p></li>
+        <li><h3>Install AloCARS</h3><p>Download our tracker for Windows. It keeps itself up to date.</p></li>
+        <li><h3>Book a flight</h3><p>Pick a leg from the map or the timetable and choose your aircraft.</p></li>
+        <li><h3>Fly it</h3><p>Fly offline, or connect to VATSIM for live ATC. AloCARS follows you from pushback to parking.</p></li>
+        <li><h3>Report filed</h3><p>Your PIREP files itself when you park, scored on how you flew.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Ranks</p><h2>Seven ranks, earned in the air</h2><p>Each rank needs both the hours and the points. Points come from your flight scores, so flying well moves you up faster.</p></div>
+      <div class="ladder" id="ladder"></div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Flight scoring</p><h2>What makes a good flight</h2><p>AloCARS scores every flight against the airline's rules. These are the current values.</p></div>
+      <div class="scoring">
+        <div class="score-card">
+          <h3>Earn points</h3>
+          <ul>
+            <li><span>Mainland leg<small>300 nm or more</small></span><span class="pts plus">+200</span></li>
+            <li><span>Interisland leg<small>under 300 nm</small></span><span class="pts plus">+50</span></li>
+            <li><span>Flying online<small>VATSIM or IVAO</small></span><span class="pts plus">+50</span></li>
+            <li><span>Stabilized approach<small>checked at 1,000 and 500 ft</small></span><span class="pts plus">+50</span></li>
+            <li><span>Smooth landing<small>softer than 200 fpm</small></span><span class="pts plus">+25</span></li>
+            <li><span>Engines started in sequence</span><span class="pts plus">+25</span></li>
+            <li><span>Unhurried preparation<small>5 minutes or more before departure</small></span><span class="pts plus">+25</span></li>
+          </ul>
+        </div>
+        <div class="score-card">
+          <h3>Lose points</h3>
+          <ul>
+            <li><span>Taxiing faster than 30 kt</span><span class="pts minus">−50</span></li>
+            <li><span>Engines not warmed up<small>under 3 minutes</small></span><span class="pts minus">−25</span></li>
+            <li><span>Engines not cooled down<small>under 3 minutes</small></span><span class="pts minus">−25</span></li>
+            <li><span>More than 3 flights in a day</span><span class="pts minus">−25</span></li>
+          </ul>
+        </div>
+        <div class="score-card">
+          <h3>Gets a report flagged</h3>
+          <ul>
+            <li><span>Landing harder than 500 fpm</span><span class="pts flag">FLAG</span></li>
+            <li><span>Landing gear up</span><span class="pts flag">FLAG</span></li>
+            <li><span>Landing more than 5 nm from your destination</span><span class="pts flag">FLAG</span></li>
+            <li><span>Fuel added in flight</span><span class="pts flag">FLAG</span></li>
+            <li><span>Time acceleration</span><span class="pts flag">FLAG</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="score-example">
+        <p><strong>A clean OGG to OAK crossing:</strong> an unhurried preparation, engines started in sequence, flown online on VATSIM, a stable approach and a soft landing.</p>
+        <div class="total">375<small>POINTS</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="acars">
+        <div>
+          <p class="eyebrow">AloCARS</p>
+          <h2>Built for this airline</h2>
+          <p>Most virtual airlines borrow someone else's tracker. AloCARS was written for Aloha: it knows our routes, our fleet, our gates and our rules.</p>
+        </div>
+        <ul>
+          <li><b>Book on a map</b><span>Pick a destination and a tail from the airline's map.</span></li>
+          <li><b>MSFS and X-Plane</b><span>MSFS 2020 and 2024, X-Plane 11 and 12.</span></li>
+          <li><b>SimBrief built in</b><span>Your flight plan opens prefilled inside AloCARS.</span></li>
+          <li><b>Live network map</b><span>See everyone from the airline who is flying right now.</span></li>
+          <li><b>Full logbook</b><span>Every flight with its route, landing rate and score.</span></li>
+          <li><b>Updates itself</b><span>New versions install when you close it, never mid-flight.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Questions</p><h2>Before you ask</h2></div>
+      <div class="faq">
+        <details><summary>Do I need real-world flying experience?</summary><p>No. Ask in Discord and someone will help you through your first sector.</p></details>
+        <details><summary>Which simulators can I use?</summary><p>Microsoft Flight Simulator 2020 or 2024, and X-Plane 11 or 12. You'll need a 737 or 757 that matches the flight you book.</p></details>
+        <details><summary>Do I have to fly online?</summary><p>No. VATSIM is optional. Flying online with AloCARS running adds live ATC and other pilots for a more immersive flight, and earns 50 bonus points. IVAO counts too.</p></details>
+        <details><summary>Can I use a Mac?</summary><p>AloCARS runs on Windows, so you'll need a Windows PC to track your flights.</p></details>
+        <details><summary>Is this the real Aloha Airlines?</summary><p>No. Aloha Airlines Virtual is a flight simulation community. We're not affiliated with, endorsed by, or representing the real-world Aloha Airlines or any commercial airline.</p></details>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<div class="view" data-view="about" hidden>
+  <section class="page-head">
+    <svg class="flower" viewBox="0 0 200 200" aria-hidden="true"><use href="#hibiscus" width="200" height="200"/></svg>
+    <div class="wrap">
+      <p class="eyebrow">About us</p>
+      <h1>A virtual airline with island roots</h1>
+      <p class="lede">We fly the Spirit of Aloha: a Hawaiʻi airline run by and for flight simmers.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap about-grid">
+      <div class="prose">
+        <h2>Our Mission</h2>
+        <p>Aloha Airlines is a premium virtual airline based out of Kahului, Hawaii, simulating scheduled air carrier operations in both the Hawaiian Islands and the U.S mainland. Our mission – encapsulated in our slogan, <strong><em>“The way flying was meant to be”</em></strong> – is to provide each passenger with an incredible flying experience, from the check-in counter to the baggage claim. While we don’t claim to be the cheapest, we promise to deliver an experience that makes every journey worthwhile.</p>
+        <p>Rooted in the <em>Spirit of Aloha</em>, we take pride in bringing back the little things that once made air travel special: genuine hospitality, attentive service, generous amenities on and off the aircraft, and an unwavering commitment to our passengers. At Aloha, we believe that flying shouldn’t be an obstacle between you and an incredible vacation away, but rather a highlight.</p>
+        <p>We believe there’s a better way to fly and we’d love to show you.</p>
+        <h2>Our Operations</h2>
+        <p>Behind every Aloha Airlines flight is a fully developed airline operation. We believe that rather than just a fun livery and a few interesting routes, pilots want an immersive virtual airline experience that goes beyond simply taking off and landing. That’s why we’re building Aloha around the systems, standards, and structure of a real-world Part 121 air carrier.</p>
+        <p>From initial pilot training and aircraft qualifications to recurrent training requirements, standardized operating procedures, custom checklists, and comprehensive flight operations manuals, our operation is being designed to reflect the professionalism and organization of our real-world counterparts. At Aloha, every pilot has a role to play, and every flight is part of something much, much bigger.</p>
+        <p>With that, we also recognize our pilots fly because they enjoy it. We believe realism should enhance, not encumber, the simulation experience. Our procedures and requirements are designed to strike a practical balance between authentic airline operations and the realities of everyday life. Whether you have time for several flights a week or just one flight a month, we want Aloha to be an airline you can genuinely enjoy being a part of.</p>
+        <p>What truly sets our operation apart, however, is what happens behind the scenes. Every flight flown for Aloha is individually modeled and incorporated into our airline’s economic simulation. Flights aren’t just logged and forgotten; they contribute to the financial performance, operational development, and continued growth of the company. Aircraft have operating costs and maintenance requirements, routes generate revenue, and every operational decision has consequences. The airline grows with you.</p>
+        <h2>Our Legacy</h2>
+        <p>We would be remiss if not to mention the shoulders we stand on. Aloha Airlines is named after a defunct real-world airline of the same name. Founded in 1946 as Trans-Pacific Airlines, the original Aloha Airlines began with a simple mission: to connect the people of Hawaii through accessible, dependable air travel. Renamed Aloha Airlines in 1958, the carrier grew to become an enduring fixture of Hawaiian aviation, earning a special place in the communities it served through its distinctive identity, familiar Boeing aircraft, and genuine spirit of island hospitality.</p>
+        <p>Unfortunately, after more than six decades in the skies, Aloha Airlines brought its passenger operations to a close in March 2008. While its aircraft eventually departed and its operations fell silent, the legacy it left behind remains an important part of Hawaii’s aviation history.</p>
+        <p>Today, Aloha Airlines returns to the virtual skies, carrying the legacy forward. Inspired by the original carrier’s history, traditions, and commitment to passenger service, we seek to recapture the experience that made Aloha special while building a virtual airline of our own. Through a meticulously modeled operation, a modern fleet, and an unwavering commitment to the <em>Spirit of Aloha</em>, we honor the past while charting our own course into the future.</p>
+      </div>
+      <aside class="side">
+        <div class="contact">
+          <h3>Discord</h3>
+          <p>The fastest way to reach us, and where the crew hangs out.</p>
+          <div><a class="btn btn-primary discord-link" href="https://discord.gg/k74wBamjku" target="_blank" rel="noopener">Join our Discord</a></div>
+        </div>
+        <div class="contact">
+          <h3>Email</h3>
+          <p>For anything that isn't a quick question.</p>
+          <div class="copy-row"><code id="email">crew@flyalohava.com</code><button class="copy-btn" id="copy-email" type="button">Copy</button></div>
+        </div>
+        <div class="notice-card">
+          <h3>Flight simulation only</h3>
+          <p>This website is for flight simulation only. Aloha Airlines Virtual is not affiliated with, endorsed by, or representative of the real-world Aloha Airlines or any commercial airline.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<!-- ============ JOIN ============ -->
+<div class="view" data-view="join" hidden>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <symbol id="discord" viewBox="0 0 24 24"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.4 18.4 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.6.1 18.1a19.9 19.9 0 0 0 6 3l1.3-2.1a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2.1a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.7ZM8 15.4c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.6 8 10.6s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></symbol>
+    <symbol id="j-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#3b134c"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#ffc24b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="j-ask" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#ec3f47"/><path d="M9.5 9.3a2.6 2.6 0 1 1 3.6 2.4c-.7.3-1.1.9-1.1 1.7v.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17.2" r="1.3" fill="#fff"/></symbol>
+  </defs></svg>
+
+  <section class="j-hero">
+    <svg class="flower" viewBox="0 0 200 200" aria-hidden="true"><use href="#hibiscus" width="200" height="200"/></svg>
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Join the crew</p>
+        <h1>Your seat in the <em>flight deck</em> starts on Discord.</h1>
+        <p class="lede">Every new pilot joins through our Discord. You apply in a few minutes, chat with our staff in a private channel, and once you're approved we send your Pilot ID and AloCARS login so you can fly your first leg.</p>
+        <div class="actions" style="margin-top:24px">
+          <a class="btn btn-discord discord-link" href="https://discord.gg/k74wBamjku" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#discord"/></svg>Join our Discord</a>
+          <a class="btn btn-ghost" href="#join" data-scroll="j-how">See how it works</a>
+        </div>
+      </div>
+      <div class="j-art" aria-hidden="true">
+        <div class="j-ticket">
+          <img src="738.webp" alt="" loading="lazy">
+          <div class="j-ticket-row">
+            <div><span>Pilot ID</span><b>HIA<small>####</small></b></div>
+            <div><span>Starting rank</span><b>Cadet</b></div>
+            <div><span>Hub</span><b>OGG</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="j-strip">
+    <div class="wrap">
+      <div><span>Applying</span><b>About 2 min</b></div>
+      <div><span>Staff reply</span><b>Under 24 h</b></div>
+      <div><span>Cost</span><b>Free</b></div>
+      <div><span>VATSIM</span><b>Optional</b></div>
+    </div>
+  </div>
+
+  <section class="band" id="j-how">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">How it works</p>
+        <h2>From your first aloha to wheels up, in five steps</h2>
+        <p>E komo mai, welcome aboard. Here's exactly what happens after you press the button, and where to look at each step.</p>
+      </div>
+      <ol class="j-timeline">
+        <li class="j-tl"><span class="n">1</span>
+          <div class="j-card">
+            <div>
+              <h3>Join our Discord</h3>
+              <p>Press <b>Join our Discord</b> and accept the invite. If you're new to Discord, you'll be asked to make a free account first.</p>
+              <p>Once you're in, read the rules, then head to <code>#onboarding</code>.</p>
+              <a class="btn btn-discord discord-link" href="https://discord.gg/k74wBamjku" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#discord"/></svg>Join our Discord</a>
+            </div>
+            <div class="j-meta"><div><span>Where</span><b>Discord invite</b></div><div><span>Takes</span><b>About a minute</b></div><div><span>You need</span><b>A Discord account</b></div></div>
+          </div>
+        </li>
+        <li class="j-tl"><span class="n">2</span>
+          <div class="j-card">
+            <div>
+              <h3>Press Apply in #onboarding</h3>
+              <p>In <code>#onboarding</code>, press <b>Apply</b>. A short form opens right inside Discord: your name, email, home base, simulator and a little about your flight sim experience.</p>
+              <p>Only you can see the form. Nothing is posted in the public channel.</p>
+            </div>
+            <div class="j-meta"><div><span>Where</span><b>#onboarding</b></div><div><span>Takes</span><b>About 2 minutes</b></div><div><span>Tip</span><b>Use an email you check</b></div></div>
+          </div>
+        </li>
+        <li class="j-tl"><span class="n">3</span>
+          <div class="j-card">
+            <div>
+              <h3>Chat with our staff</h3>
+              <p>As soon as you apply, our bot opens a <b>private channel</b> between you and the staff team. They'll say hello, may ask a question or two, and let you know when you're approved.</p>
+              <p>Discord notifies you whenever they reply. To check on things any time, press <b>Check my application</b> in <code>#onboarding</code>.</p>
+            </div>
+            <div class="j-meta"><div><span>Where</span><b>Your private channel</b></div><div><span>Staff reply</span><b>Within 24 hours</b></div><div><span>Watch for</span><b>Discord notifications</b></div></div>
+          </div>
+        </li>
+        <li class="j-tl"><span class="n">4</span>
+          <div class="j-card">
+            <div>
+              <h3>Get your Pilot ID and login</h3>
+              <p>When you're approved, we email your <b>Pilot ID</b> (HIA followed by four digits) and your AloCARS password. The bot also posts your Pilot ID in your private channel.</p>
+              <p>No email after approval? Check your spam folder, then ask in your channel.</p>
+            </div>
+            <div class="j-meta"><div><span>Where</span><b>Your email inbox</b></div><div><span>You get</span><b>Pilot ID + password</b></div><div><span>Your rank</span><b>Cadet</b></div></div>
+          </div>
+        </li>
+        <li class="j-tl"><span class="n">5</span>
+          <div class="j-card">
+            <div>
+              <h3>Install AloCARS and fly</h3>
+              <p>Download AloCARS for Windows, sign in with your Pilot ID or email, and book your first leg from the map. It opens SimBrief for your plan, follows you from pushback to parking, and files your report when you park.</p>
+              <p>Fly offline, or connect to VATSIM for live ATC and traffic. Flying online earns bonus points.</p>
+              <a class="btn btn-outline" href="https://acars.flyalohava.com/download" target="_blank" rel="noopener">Download AloCARS</a>
+            </div>
+            <div class="j-meta"><div><span>Where</span><b>AloCARS on your PC</b></div><div><span>Needs</span><b>Windows + your sim</b></div><div><span>First leg</span><b>Try OGG → HNL</b></div></div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Before you apply</p><h2>Have these ready</h2></div>
+      <div class="j-lists">
+        <div class="j-list">
+          <h3>You'll need</h3>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#j-check"/></svg><span><b>A simulator</b><small>Microsoft Flight Simulator 2020 or 2024, or X-Plane 11 or 12, with a 737 or 757.</small></span></li>
+            <li><svg aria-hidden="true"><use href="#j-check"/></svg><span><b>A Windows PC</b><small>AloCARS, our flight tracker, runs on Windows alongside your sim.</small></span></li>
+            <li><svg aria-hidden="true"><use href="#j-check"/></svg><span><b>Discord and an email address</b><small>Applications and staff chat happen on Discord. Your login arrives by email.</small></span></li>
+            <li><svg aria-hidden="true"><use href="#j-check"/></svg><span><b>A VATSIM account</b> <span class="j-opt">Optional</span><small>Not required. Flying online adds live ATC and earns bonus points. IVAO counts too.</small></span></li>
+          </ul>
+        </div>
+        <div class="j-list">
+          <h3>We'll ask</h3>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#j-ask"/></svg><span><b>Your name and email</b><small>The email is where your Pilot ID and password go.</small></span></li>
+            <li><svg aria-hidden="true"><use href="#j-ask"/></svg><span><b>Your home base and simulator</b><small>So we know where you'd like to fly from and what you fly.</small></span></li>
+            <li><svg aria-hidden="true"><use href="#j-ask"/></svg><span><b>A little about your experience</b><small>Brand new is fine. We'll help you through your first sector.</small></span></li>
+            <li><svg aria-hidden="true"><use href="#j-ask"/></svg><span><b>Your VATSIM CID</b> <span class="j-opt">If you have one</span><small>Helps us link your online flights to your record.</small></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Your first week</p><h2>After you're approved</h2></div>
+      <div class="j-week">
+        <div><span class="k">Day one</span><h3>Fly a short hop</h3><p>Start with an interisland leg on the 737-700, like Kahului to Honolulu at 87 nm. It's a quick way to get to know AloCARS.</p></div>
+        <div><span class="k">This week</span><h3>Fly well, earn points</h3><p>Stable approaches, soft landings and engines warmed and cooled all earn points. Hours and points together move you up from Cadet.</p></div>
+        <div><span class="k">Any time</span><h3>Join a group flight</h3><p>Group flights, screenshots and help for new pilots all happen on Discord. Ask anything, there's always someone around.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt">
+    <div class="wrap">
+      <div class="sec-head"><p class="eyebrow">Questions</p><h2>About joining</h2></div>
+      <div class="faq">
+        <details><summary>How long does approval take?</summary><p>Our staff reply in less than 24 hours, in your private channel, and Discord notifies you when they do.</p></details>
+        <details><summary>I was approved but have no email.</summary><p>Check your spam or junk folder first. Your Pilot ID is also posted in your private channel. If the email still hasn't arrived, ask staff there and they'll resend it.</p></details>
+        <details><summary>Can I check on my application?</summary><p>Yes. In <b>#onboarding</b>, press <b>Check my application</b> any time.</p></details>
+        <details><summary>Do I need VATSIM?</summary><p>No. You can fly offline and AloCARS tracks your flight the same way. Flying online adds live ATC and other pilots, and earns 50 bonus points per flight. IVAO counts too.</p></details>
+        <details><summary>Already a pilot?</summary><p><a href="https://acars.flyalohava.com/download" target="_blank" rel="noopener">Download AloCARS</a> and sign in with your Pilot ID or email.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <svg class="flower" viewBox="0 0 200 200" aria-hidden="true"><use href="#hibiscus" width="200" height="200"/></svg>
+    <div class="wrap">
+      <div>
+        <h2>Ready when you are.</h2>
+        <p>Join our Discord, press Apply in #onboarding, and we'll see you on the ramp at Kahului.</p>
+      </div>
+      <div class="actions"><a class="btn btn-discord discord-link" href="https://discord.gg/k74wBamjku" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#discord"/></svg>Join our Discord</a></div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="logo-chip"><img src="Logo.png" alt="Aloha Airlines" width="96" height="40"></span>
+        <p>A virtual airline flying Hawaiʻi from Kahului, Maui.</p>
+      </div>
+      <div>
+        <h4>The airline</h4>
+        <ul><li><a href="#fleet">Fleet</a></li><li><a href="#network">Network</a></li><li><a href="#about">About us</a></li></ul>
+      </div>
+      <div>
+        <h4>Pilots</h4>
+        <ul><li><a href="#fly">Fly with us</a></li><li><a class="join-link" href="#join">Join the crew</a></li><li><a class="discord-link" href="https://discord.gg/k74wBamjku" target="_blank" rel="noopener">Discord</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Aloha Airlines Virtual</span>
+      <span>For flight simulation only. Not affiliated with the real-world Aloha Airlines.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="sim-notice" id="sim-notice" hidden>
+  <div class="wrap">
+    <p><strong>Flight simulation only.</strong> Aloha Airlines Virtual is a flight simulation community and is not affiliated with the real-world Aloha Airlines or any commercial airline.</p>
+    <button type="button" id="sim-ok">I understand</button>
+  </div>
+</div>
+
+<script>
+'use strict';
+/* ---------- data (from the AloCARS schedule, Nov 2026) ---------- */
+const AP = {
+  PHOG: { iata: 'OGG', city: 'Kahului', island: 'Maui', lat: 20.8986, lon: -156.4305 },
+  PHNL: { iata: 'HNL', city: 'Honolulu', island: 'Oʻahu', lat: 21.3187, lon: -157.9225 },
+  PHLI: { iata: 'LIH', city: 'Līhuʻe', island: 'Kauaʻi', lat: 21.97806, lon: -159.34821 },
+  PHKO: { iata: 'KOA', city: 'Kona', island: 'Hawaiʻi', lat: 19.7388, lon: -156.0456 },
+  PHTO: { iata: 'ITO', city: 'Hilo', island: 'Hawaiʻi', lat: 19.71531, lon: -155.03974 },
+  PHMK: { iata: 'MKK', city: 'Molokaʻi', island: 'Molokaʻi', lat: 21.15579, lon: -157.09208 },
+  PHNY: { iata: 'LNY', city: 'Lānaʻi', island: 'Lānaʻi', lat: 20.7856, lon: -156.9514 },
+  KOAK: { iata: 'OAK', city: 'Oakland', lat: 37.7117, lon: -122.21566 },
+  KLGB: { iata: 'LGB', city: 'Long Beach', lat: 33.82017, lon: -118.14593 },
+  KLAS: { iata: 'LAS', city: 'Las Vegas', lat: 36.084, lon: -115.1537 },
+  KGEG: { iata: 'GEG', city: 'Spokane', lat: 47.6199, lon: -117.5338, alt: true },
+  KTUS: { iata: 'TUS', city: 'Tucson', lat: 32.1161, lon: -110.941, alt: true },
+};
+const TYPE = { B736: '737-600', B737: '737-700', B738: '737-800', B752: '757-200' };
+// flight, from, to, departs (UTC), aircraft, alternate aircraft, nm, kind
+const ROUTES = [
+  ['HI101', 'PHOG', 'KLGB', '19:00', 'B738', '', 2169, 'mainland'],
+  ['HI102', 'KLGB', 'PHOG', '01:05', 'B738', '', 2169, 'mainland'],
+  ['HI121', 'PHOG', 'KOAK', '19:30', 'B738', '', 2039, 'mainland'],
+  ['HI122', 'KOAK', 'PHOG', '01:35', 'B738', '', 2039, 'mainland'],
+  ['HI131', 'PHOG', 'KLAS', '20:00', 'B752', 'B738', 2340, 'mainland'],
+  ['HI132', 'KLAS', 'PHOG', '02:20', 'B752', 'B738', 2340, 'mainland'],
+  ['HI1101', 'PHOG', 'PHNL', '15:45', 'B737', 'B738', 87, 'interisland'],
+  ['HI1101', 'PHOG', 'PHNL', '19:45', 'B737', 'B736', 87, 'interisland'],
+  ['HI1102', 'PHNL', 'PHOG', '17:10', 'B737', 'B738', 87, 'interisland'],
+  ['HI1102', 'PHNL', 'PHOG', '20:50', 'B737', '', 87, 'interisland'],
+  ['HI1121', 'PHOG', 'PHKO', '19:00', 'B737', 'B736', 73, 'interisland'],
+  ['HI1122', 'PHKO', 'PHOG', '20:25', 'B737', '', 73, 'interisland'],
+  ['HI1131', 'PHOG', 'PHLI', '22:00', 'B737', 'B736', 175, 'interisland'],
+  ['HI1132', 'PHLI', 'PHOG', '23:35', 'B737', 'B736', 175, 'interisland'],
+  ['HI1141', 'PHOG', 'PHNL', '01:30', 'B737', 'B736', 87, 'interisland'],
+  ['HI1142', 'PHNL', 'PHOG', '02:55', 'B737', 'B736', 87, 'interisland'],
+  ['HI2205', 'PHNL', 'PHTO', '18:45', 'B737', 'B736', 189, 'interisland'],
+  ['HI2206', 'PHTO', 'PHNL', '20:25', 'B737', 'B736', 189, 'interisland'],
+  ['HI2221', 'PHNL', 'PHLI', '22:15', 'B737', 'B736', 89, 'interisland'],
+  ['HI2222', 'PHLI', 'PHNL', '23:40', 'B737', 'B736', 89, 'interisland'],
+  ['HI2231', 'PHNL', 'PHKO', '01:15', 'B737', 'B736', 142, 'interisland'],
+  ['HI2232', 'PHKO', 'PHNL', '02:40', 'B737', '', 142, 'interisland'],
+  ['HI2241', 'PHNL', 'PHOG', '15:45', 'B737', '', 87, 'interisland'],
+  ['HI2242', 'PHOG', 'PHNL', '03:10', 'B737', '', 87, 'interisland'],
+  ['HI8101', 'PHOG', 'PHNY', '', 'B736', '', 30, 'charter'],
+  ['HI8102', 'PHNY', 'PHNL', '', 'B736', '', 63, 'charter'],
+  ['HI8122', 'PHMK', 'PHNL', '', 'B736', '', 47, 'charter'],
+  ['HI8123', 'PHNL', 'PHOG', '', 'B736', '', 87, 'charter'],
+  ['HI8201', 'PHOG', 'PHMK', '', 'B736', '', 40, 'charter'],
+  ['HI8202', 'PHMK', 'PHOG', '', 'B736', '', 40, 'charter'],
+];
+const FLEET = [
+  { id: 'B738', name: 'Boeing 737-800', role: 'Mainland shuttle', img: '738.webp', scale: 84.5,
+    text: 'Our -800s cross more than 2,000 nm of open Pacific to Oakland and Long Beach, and stand in on the Las Vegas run. Set up for ETOPS, with the range to spare.',
+    seats: 146, kts: 450, burn: 5510,
+    tails: [['N803HI', 'Mauna Loa', '13,679 ft · Hawaiʻi Island'], ['N804HI', 'Mauna Kea', '13,803 ft · Hawaiʻi Island'], ['N805HI', 'Hualālai', '8,271 ft · Hawaiʻi Island']] },
+  { id: 'B737', name: 'Boeing 737-700', role: 'Interisland workhorse', img: '737.webp', scale: 71.2,
+    text: 'The -700 flies most of the interisland schedule from Maui and Honolulu: the OGG–HNL shuttle, and turns to Līhuʻe, Kona and Hilo.',
+    seats: 124, kts: 445, burn: 5180,
+    tails: [['N743HI', 'Haleakalā', '10,023 ft · Maui'], ['N744HI', 'Kamakou', '4,961 ft · Molokaʻi'], ['N745HI', 'Puʻu Kukui', '5,788 ft · Maui']] },
+  { id: 'B736', name: 'Boeing 737-600', role: 'Short-field specialist', img: '736.png', scale: 59.6, livery: 'Retro livery',
+    text: 'One aircraft, made for the short runways at Molokaʻi and Lānaʻi. It flies our charters and backs up the -700 across the islands.',
+    seats: 108, kts: 440, burn: 4850,
+    tails: [['N600HI', 'Hāʻupu', 'Kauaʻi']] },
+  { id: 'B752', name: 'Boeing 757-200', role: 'Mainland flagship', img: '752.png', scale: 100,
+    text: 'Our B757s operate the highest demand routes.  Configured with 16 Ali\'i Class, 36 Nanea Class, and 138 Ohana Class seats, the B757 is the most comfortable way to travel to, and from, the Hawaiian Islands.',
+    seats: 190, kts: 460, burn: 7280,
+    tails: [['N201HI', 'King Kamehameha I', 'United the islands in 1810'], ['N202HI', 'Queen Liliʻuokalani', 'Last monarch of the Hawaiian Kingdom']] },
+];
+const RANKS = [
+  ['Cadet', 'CDT', 0, 0], ['Junior First Officer', 'Jr FO', 5, 500], ['First Officer', 'FO', 25, 2500],
+  ['Senior First Officer', 'Sr FO', 40, 4000], ['Junior Captain', 'Jr CPT', 50, 5000],
+  ['Captain', 'CPT', 100, 10000], ['Senior Captain', 'Sr CPT', 200, 20000],
+];
+const KIND_LABEL = { interisland: 'Interisland', mainland: 'Mainland', charter: 'Charter', training: 'Training' };
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const nm = n => n.toLocaleString('en-US') + ' nm';
+const toHST = z => { const [h, m] = z.split(':').map(Number); return String((h + 14) % 24).padStart(2, '0') + ':' + String(m).padStart(2, '0'); };
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- router ---------- */
+const VIEWS = ['home', 'fleet', 'network', 'fly', 'about', 'join'];
+const TITLES = { home: 'Aloha Airlines Virtual', fleet: 'Fleet · Aloha Airlines Virtual', network: 'Network · Aloha Airlines Virtual', fly: 'Fly with us · Aloha Airlines Virtual', about: 'About · Aloha Airlines Virtual', join: 'Join · Aloha Airlines Virtual' };
+let current = null;
+function route() {
+  const want = location.hash.slice(1);
+  const v = VIEWS.includes(want) ? want : 'home';
+  if (v !== current) {
+    document.querySelectorAll('.view').forEach(el => { el.hidden = el.dataset.view !== v; });
+    document.querySelectorAll('[data-nav]').forEach(a => { if (a.dataset.nav === v) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    document.title = TITLES[v];
+    if (current !== null) window.scrollTo({ top: 0, behavior: 'auto' });
+    current = v;
+    if (v === 'home') renderBoard(boardOrigin, true);
+  }
+  closeMenu();
+}
+window.addEventListener('hashchange', route);
+
+/* ---------- mobile menu ---------- */
+const menuBtn = $('#menu-btn'), nav = $('#site-nav');
+function closeMenu() { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.textContent = 'Menu'; }
+menuBtn.addEventListener('click', () => {
+  const open = !nav.classList.contains('open');
+  nav.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', String(open));
+  menuBtn.textContent = open ? 'Close' : 'Menu';
+});
+
+/* ---------- departures board ---------- */
+let boardOrigin = 'PHOG';
+const FLAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+function flap(el, delay) {
+  const final = el.dataset.t;
+  if (reduceMotion) { el.textContent = final; return; }
+  const dur = 650, start = performance.now() + delay;
+  const step = now => {
+    const p = Math.max(0, (now - start) / dur);
+    if (p >= 1) { el.textContent = final; return; }
+    const shown = Math.floor(p * final.length);
+    let s = final.slice(0, shown);
+    for (let i = shown; i < final.length; i++) s += final[i] === ' ' ? ' ' : FLAP[(Math.random() * FLAP.length) | 0];
+    el.textContent = s;
+    requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+function renderBoard(origin, animate) {
+  boardOrigin = origin;
+  document.querySelectorAll('.board-tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.origin === origin)));
+  const rows = ROUTES.filter(r => r[1] === origin && r[3] && (r[7] === 'interisland' || r[7] === 'mainland'))
+    .map(r => ({ hst: toHST(r[3]), z: r[3], fn: r[0], to: AP[r[2]], ac: TYPE[r[4]], nm: r[6], etops: r[7] === 'mainland' }))
+    .sort((a, b) => a.hst.localeCompare(b.hst));
+  $('#board-body').innerHTML = rows.map(r => `<tr>
+      <td><span class="f" data-t="${r.hst}">${r.hst}</span><small>${r.z}Z</small></td>
+      <td><span class="f" data-t="${esc(r.fn)}">${esc(r.fn)}</span></td>
+      <td><span class="f" data-t="${esc(r.to.city.toUpperCase())}">${esc(r.to.city.toUpperCase())}</span>${r.etops ? '<span class="etops">ETOPS</span>' : ''}<small>${r.to.iata}</small></td>
+      <td><span class="f" data-t="${r.ac}">${r.ac}</span></td>
+      <td class="num"><span class="f" data-t="${nm(r.nm).toUpperCase()}">${nm(r.nm).toUpperCase()}</span></td>
+    </tr>`).join('');
+  if (animate) document.querySelectorAll('#board-body tr').forEach((tr, i) => tr.querySelectorAll('.f').forEach((el, j) => flap(el, i * 70 + j * 40)));
+}
+document.querySelectorAll('.board-tabs button').forEach(b => b.addEventListener('click', () => renderBoard(b.dataset.origin, true)));
+function tick() {
+  const now = new Date();
+  const fmt = tz => new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: tz }).format(now);
+  $('#clock-hst').textContent = fmt('Pacific/Honolulu');
+  $('#clock-z').textContent = fmt('UTC');
+}
+tick(); setInterval(tick, 20000);
+
+/* ---------- fleet ---------- */
+function routesFor(id) {
+  const seen = new Set(), out = [];
+  ROUTES.filter(r => r[4] === id || r[5].split('/').includes(id)).forEach(r => {
+    const a = AP[r[1]].iata, b = AP[r[2]].iata, key = [a, b].sort().join('–');
+    if (!seen.has(key)) { seen.add(key); out.push(key); }
+  });
+  return out;
+}
+$('#fleet-list').innerHTML = ['B736', 'B737', 'B738', 'B752'].map(id => FLEET.find(f => f.id === id)).map(f => {
+  const n = f.tails.length;
+  const visual = f.img
+    ? `<div class="ac-visual">${f.livery ? `<span class="livery-tag">${esc(f.livery)}</span>` : ''}<img style="width:${f.scale}%;height:auto" src="${f.img}" alt="Side profile of the ${esc(f.name)} in Aloha Airlines Virtual ${f.livery ? esc(f.livery.toLowerCase()) : 'livery'}" loading="lazy"></div>`
+    : `<div class="ac-visual art"><span class="soon">Livery profile coming soon</span><svg class="flower" viewBox="0 0 200 200" aria-hidden="true"><use href="#hibiscus" width="200" height="200"/></svg><span class="big">${TYPE[f.id]}</span></div>`;
+  return `<article class="ac">
+    ${visual}
+    <div class="ac-body">
+      <span class="ac-role">${esc(f.role)}</span>
+      <h2>${esc(f.name)}</h2>
+      <p>${esc(f.text)}</p>
+      <dl class="specs">
+        <div><dt>Seats</dt><dd>${f.seats}</dd></div>
+        <div><dt>Cruise</dt><dd>${f.kts} <small>kt</small></dd></div>
+        <div><dt>Fuel burn</dt><dd>${f.burn.toLocaleString('en-US')} <small>lbs/hr</small></dd></div>
+      </dl>
+      <ul class="tails" aria-label="${n} aircraft">
+        ${f.tails.map(t => `<li><span class="reg">${t[0]}</span><span class="nm">${esc(t[1])}<small>${esc(t[2])}</small></span></li>`).join('')}
+      </ul>
+    </div>
+  </article>`;
+}).join('');
+
+/* ---------- maps ---------- */
+const ISLANDS = [
+  [[22.03, -160.10], [21.97, -160.06], [21.78, -160.20], [21.84, -160.25], [21.93, -160.24]],
+  [[22.23, -159.58], [22.22, -159.40], [22.13, -159.30], [21.96, -159.33], [21.87, -159.45], [21.90, -159.60], [21.97, -159.73], [22.08, -159.79], [22.17, -159.72]],
+  [[21.71, -158.00], [21.58, -157.88], [21.46, -157.76], [21.32, -157.65], [21.26, -157.71], [21.28, -157.86], [21.31, -158.10], [21.47, -158.23], [21.58, -158.28], [21.66, -158.10]],
+  [[21.22, -157.30], [21.20, -157.10], [21.16, -156.92], [21.18, -156.72], [21.10, -156.71], [21.05, -156.90], [21.07, -157.05], [21.10, -157.26]],
+  [[20.93, -156.93], [20.90, -156.83], [20.79, -156.80], [20.73, -156.88], [20.75, -157.00], [20.84, -157.06]],
+  [[20.60, -156.67], [20.58, -156.55], [20.51, -156.55], [20.52, -156.68]],
+  [[21.03, -156.65], [20.97, -156.52], [20.88, -156.47], [20.80, -156.47], [20.93, -156.35], [20.90, -156.10], [20.83, -155.99], [20.72, -155.98], [20.62, -156.13], [20.58, -156.42], [20.65, -156.45], [20.79, -156.50], [20.80, -156.60], [20.90, -156.69], [20.98, -156.70]],
+  [[20.26, -155.88], [20.12, -155.58], [19.97, -155.25], [19.72, -155.08], [19.73, -154.98], [19.52, -154.81], [19.34, -154.98], [19.26, -155.25], [19.06, -155.58], [18.91, -155.68], [19.10, -155.90], [19.35, -155.89], [19.65, -156.03], [19.85, -155.95], [20.03, -155.83], [20.15, -155.90]],
+];
+const COAST = [[49.6, -125.6], [48.38, -124.72], [47.9, -124.6], [46.9, -124.1], [46.25, -124.05], [45.5, -123.95], [44.6, -124.07], [43.35, -124.35], [42.0, -124.21], [40.44, -124.41], [39.0, -123.7], [38.3, -123.05], [37.8, -122.5], [37.2, -122.4], [36.6, -121.9], [36.0, -121.5], [35.2, -120.88], [34.58, -120.63], [34.45, -120.0], [34.0, -118.8], [33.75, -118.4], [33.6, -117.9], [33.2, -117.4], [32.53, -117.12], [31.86, -116.66], [30.5, -115.95], [29.3, -115.2], [27.85, -115.08], [26.5, -113.4], [24.6, -112.1], [23.4, -110.3], [22.88, -109.91], [24.15, -110.3], [26.0, -111.35], [27.34, -112.27], [28.95, -113.55], [31.0, -114.84], [31.8, -114.8], [31.3, -113.55], [28.82, -111.94], [27.92, -110.9], [26.8, -109.6], [25.6, -109.05], [24.9, -108.0], [49.6, -108.0]];
+
+function projector(lon0, lon1, lat0, lat1, w, pad, midLat) {
+  const kx = Math.cos(midLat * Math.PI / 180);
+  const s = (w - 2 * pad) / ((lon1 - lon0) * kx);
+  const h = Math.round((lat1 - lat0) * s + 2 * pad);
+  return { w, h, x: lon => +((lon - lon0) * kx * s + pad).toFixed(1), y: lat => +((lat1 - lat) * s + pad).toFixed(1) };
+}
+const poly = (P, pts) => pts.map(([la, lo]) => `${P.x(lo)},${P.y(la)}`).join(' ');
+function gc(a, b, n) {
+  const r = Math.PI / 180, v = p => [Math.cos(p.lat * r) * Math.cos(p.lon * r), Math.cos(p.lat * r) * Math.sin(p.lon * r), Math.sin(p.lat * r)];
+  const A = v(a), B = v(b), d = Math.acos(A[0] * B[0] + A[1] * B[1] + A[2] * B[2]), out = [];
+  for (let i = 0; i <= n; i++) {
+    const t = i / n, k1 = Math.sin((1 - t) * d) / Math.sin(d), k2 = Math.sin(t * d) / Math.sin(d);
+    const x = k1 * A[0] + k2 * B[0], y = k1 * A[1] + k2 * B[1], z = k1 * A[2] + k2 * B[2];
+    out.push([Math.atan2(z, Math.hypot(x, y)) / r, Math.atan2(y, x) / r]);
+  }
+  return out;
+}
+function label(x, y, anchor, name, code, sub) {
+  return `<text x="${x}" y="${y}" text-anchor="${anchor}"><tspan class="m-lbl">${esc(name)}</tspan><tspan class="m-lbl-code" dx="6">${code}</tspan></text>` +
+    (sub ? `<text x="${x}" y="${y + 15}" text-anchor="${anchor}" class="m-lbl-sub">${esc(sub)}</text>` : '');
+}
+function drawIslands() {
+  const P = projector(-160.4, -154.6, 18.8, 22.4, 600, 26, 20.6);
+  const pairs = new Map(), rank = { interisland: 0, charter: 1, training: 2 };
+  ROUTES.filter(r => r[7] !== 'mainland' && r[7] !== 'training').forEach(r => {
+    const k = [r[1], r[2]].sort().join('-');
+    if (!pairs.has(k) || rank[r[7]] < rank[pairs.get(k)]) pairs.set(k, r[7]);
+  });
+  const cls = { interisland: 'm-r-sched', charter: 'm-r-charter', training: 'm-r-train' };
+  const lines = [...pairs].sort((a, b) => rank[b[1]] - rank[a[1]]).map(([k, kind]) => {
+    const [a, b] = k.split('-').map(c => AP[c]);
+    // a gentle curve so overlapping legs stay readable
+    const x1 = P.x(a.lon), y1 = P.y(a.lat), x2 = P.x(b.lon), y2 = P.y(b.lat);
+    const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1, len = Math.hypot(dx, dy), bend = kind === 'training' ? .16 : .07;
+    const cx = mx - dy / len * len * bend, cy = my + dx / len * len * bend;
+    return `<path class="${cls[kind]}" d="M${x1},${y1} Q${cx.toFixed(1)},${cy.toFixed(1)} ${x2},${y2}"/>`;
+  }).join('');
+  const L = { PHLI: [0, -14, 'middle'], PHNL: [-10, 22, 'end'], PHMK: [0, -18, 'middle'], PHNY: [-10, 22, 'end'], PHOG: [12, -12, 'start'], PHKO: [-12, 20, 'end'], PHTO: [0, 26, 'middle'] };
+  const dots = Object.entries(L).map(([icao, [dx, dy, an]]) => {
+    const a = AP[icao], x = P.x(a.lon), y = P.y(a.lat), hub = icao === 'PHOG';
+    return `<circle class="${hub ? 'm-hub' : 'm-dot'}" cx="${x}" cy="${y}" r="${hub ? 7 : 5}"/>` + label(x + dx, y + dy, an, a.city, a.iata, hub ? 'Our hub' : '');
+  }).join('');
+  const svg = $('#map-islands');
+  svg.setAttribute('viewBox', `0 0 ${P.w} ${P.h}`);
+  svg.innerHTML = `<rect class="m-sea" width="${P.w}" height="${P.h}"/>` + ISLANDS.map(i => `<polygon class="m-isle" points="${poly(P, i)}"/>`).join('') + lines + dots;
+}
+function drawMainland() {
+  const P = projector(-161, -108.5, 17.8, 49.6, 600, 24, 33);
+  const hub = AP.PHOG;
+  const arcs = ['KOAK', 'KLGB', 'KLAS'].map(c => `<polyline class="m-r-main" points="${poly(P, gc(hub, AP[c], 48))}"/>`).join('');
+  const dest = [['KOAK', -10, -28, 'end'], ['KLAS', 0, -26, 'middle'], ['KLGB', 0, 28, 'middle']].map(([c, dx, dy, an]) => {
+    const a = AP[c], x = P.x(a.lon), y = P.y(a.lat), d = ROUTES.find(r => r[1] === 'PHOG' && r[2] === c)[6];
+    return `<circle class="m-dot" cx="${x}" cy="${y}" r="5.5"/>` + label(x + dx, y + dy, an, a.city, a.iata, nm(d));
+  }).join('');
+  const alts = [['KGEG', 10, 4, 'start'], ['KTUS', 0, 22, 'middle']].map(([c, dx, dy, an]) => {
+    const a = AP[c], x = P.x(a.lon), y = P.y(a.lat);
+    return `<circle class="m-alt" cx="${x}" cy="${y}" r="4.5"/>` + `<text x="${x + dx}" y="${y + dy}" text-anchor="${an}" class="m-lbl-sub">${a.city} ${a.iata}</text>`;
+  }).join('');
+  const small = ['PHNL', 'PHLI', 'PHKO', 'PHTO', 'PHMK', 'PHNY'].map(c => `<circle class="m-small" cx="${P.x(AP[c].lon)}" cy="${P.y(AP[c].lat)}" r="2"/>`).join('');
+  const hx = P.x(hub.lon), hy = P.y(hub.lat);
+  const svg = $('#map-mainland');
+  svg.setAttribute('viewBox', `0 0 ${P.w} ${P.h}`);
+  svg.innerHTML = `<rect class="m-sea" width="${P.w}" height="${P.h}"/>` +
+    `<polygon class="m-land" points="${poly(P, COAST)}"/>` +
+    ISLANDS.map(i => `<polygon class="m-isle" points="${poly(P, i)}"/>`).join('') +
+    `<text class="m-ocean" x="${P.x(-134)}" y="${P.y(21)}" text-anchor="middle">PACIFIC OCEAN</text>` +
+    arcs + small + dest +
+    `<circle class="m-hub" cx="${hx}" cy="${hy}" r="7"/>` + label(hx + 2, hy + 26, 'start', 'Kahului', 'OGG', 'Our hub');
+}
+drawIslands();
+drawMainland();
+
+/* ---------- timetable ---------- */
+let ttKind = 'all';
+const kinds = ['all', 'interisland', 'mainland', 'charter'];
+function renderTools() {
+  $('#tt-tools').innerHTML = kinds.map(k => {
+    const n = k === 'all' ? ROUTES.length : ROUTES.filter(r => r[7] === k).length;
+    return `<button type="button" class="chip" data-kind="${k}" aria-pressed="${k === ttKind}">${k === 'all' ? 'All flights' : KIND_LABEL[k]} <b>${n}</b></button>`;
+  }).join('');
+}
+function renderTable() {
+  const rows = ROUTES.filter(r => ttKind === 'all' || r[7] === ttKind);
+  $('#tt-body').innerHTML = rows.map(r => {
+    const a = AP[r[1]], b = AP[r[2]];
+    const dep = r[3] ? `<span class="code">${r[3]}Z</span><small>${toHST(r[3])} HST</small>` : `<span>${r[7] === 'charter' ? 'On request' : 'Any time'}</span>`;
+    const alt = r[5] ? `<small>(${r[5].split('/').map(t => TYPE[t]).join(', ')})</small>` : '';
+    return `<tr>
+      <td><span class="fn">${r[0]}</span><br><span class="kind k-${r[7]}">${KIND_LABEL[r[7]]}</span></td>
+      <td><span class="code">${a.iata}</span><small>${esc(a.city)}</small></td>
+      <td><span class="code">${b.iata}</span><small>${esc(b.city)}</small></td>
+      <td>${dep}</td>
+      <td>${TYPE[r[4]]}${alt}</td>
+      <td class="num">${nm(r[6])}</td>
+    </tr>`;
+  }).join('');
+}
+$('#tt-tools').addEventListener('click', e => {
+  const b = e.target.closest('[data-kind]');
+  if (!b) return;
+  ttKind = b.dataset.kind;
+  renderTools(); renderTable();
+});
+renderTools(); renderTable();
+
+/* ---------- ranks ---------- */
+$('#ladder').innerHTML = RANKS.map(([name, abbr, h, p]) => `<div class="rung">
+    <span class="rk">${name}<small>${abbr}</small></span>
+    <span class="bar" role="img" aria-label="${h} hours"><i style="width:${(h / 200) * 100}%"></i></span>
+    <span class="req">${h} h<small>${p.toLocaleString('en-US')} points</small></span>
+  </div>`).join('') + `<div class="ladder-scale"><span></span><div><span>0 h</span><span>100 h</span><span>200 h</span></div><span></span></div>`;
+
+/* ---------- copy email ---------- */
+$('#copy-email').addEventListener('click', async e => {
+  const btn = e.currentTarget, text = $('#email').textContent;
+  try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }
+  catch { const r = document.createRange(); r.selectNodeContents($('#email')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; }
+  setTimeout(() => { btn.textContent = 'Copy'; }, 1800);
+});
+
+/* ---------- in-page scroll links (keep the #view hash) ---------- */
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-scroll]');
+  if (!a) return;
+  const t = document.getElementById(a.dataset.scroll);
+  if (t) { e.preventDefault(); t.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }); }
+});
+
+/* ---------- first-visit notice ---------- */
+(() => {
+  let seen = false;
+  try { seen = localStorage.getItem('aloha_disclaimer_accepted') === 'true'; } catch {}
+  const bar = $('#sim-notice');
+  if (!seen) bar.hidden = false;
+  $('#sim-ok').addEventListener('click', () => { bar.hidden = true; try { localStorage.setItem('aloha_disclaimer_accepted', 'true'); } catch {} });
+})();
+
+route();
+</script>
+
+</body></html>
