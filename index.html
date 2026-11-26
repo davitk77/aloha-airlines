@@ -335,6 +335,13 @@ section.band.alt { background: var(--sand-2); }
 .acars li { padding: 14px 0; border-top: 1px solid var(--line-dark); display: grid; gap: 2px; }
 .acars li b { font-family: var(--display); font-size: 18px; color: var(--sand); }
 .acars li span { font-size: 14.5px; color: var(--lilac); }
+.acars-shot { grid-column: 1 / -1; margin: 8px 0 0; }
+.acars-shot .frame { background: #120818; border: 1px solid var(--line-dark); border-radius: 14px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .8); }
+.acars-shot .bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; border-bottom: 1px solid var(--line-dark); }
+.acars-shot .bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, .18); }
+.acars-shot .bar span { margin-left: 8px; font: 600 12px var(--mono); letter-spacing: .08em; color: var(--lilac); }
+.acars-shot img { width: 100%; height: auto; display: block; }
+.acars-shot figcaption { margin-top: 12px; font-size: 14px; color: var(--lilac); }
 @media (max-width: 900px) { .acars { grid-template-columns: 1fr; padding: 28px 22px; gap: 24px; } }
 @media (max-width: 560px) { .acars ul { grid-template-columns: 1fr; } }
 
@@ -781,6 +788,13 @@ footer a:hover { color: var(--plumeria); text-decoration: underline; }
           <li><b>Full logbook</b><span>Every flight with its route, landing rate and score.</span></li>
           <li><b>Updates itself</b><span>New versions install when you close it, never mid-flight.</span></li>
         </ul>
+        <figure class="acars-shot">
+          <div class="frame">
+            <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>AloCARS</span></div>
+            <img src="alocars.webp" alt="The AloCARS dashboard: rank, hours, flights, points and distance, progress to the next rank, NOTAMs, and a list of recent flights with landing rates and scores" width="1424" height="881" loading="lazy">
+          </div>
+          <figcaption>The AloCARS dashboard: your rank, hours and points, progress to the next rank, airline NOTAMs and your recent flights.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
